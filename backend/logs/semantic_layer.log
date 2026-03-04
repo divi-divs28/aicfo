@@ -1,0 +1,1601 @@
+2026-02-27 18:30:02 | INFO     | ================================================================================
+2026-02-27 18:30:02 | INFO     | [REQ-183002-0001] NEW QUERY RECEIVED
+2026-02-27 18:30:02 | INFO     | ================================================================================
+2026-02-27 18:30:02 | INFO     | [REQ-183002-0001] USER QUESTION: Show me the companies having highest profit
+2026-02-27 18:30:02 | INFO     | [REQ-183002-0001] TIMESTAMP: 2026-02-27T18:30:02.039822
+2026-02-27 18:30:02 | WARNING  | [REQ-183002-0001] FALLBACK: Vanna is not ready (not trained or not connected)
+2026-02-27 18:30:02 | INFO     | [REQ-183002-0001] Switching to rule-based analytics path
+2026-03-02 11:55:23 | INFO     | ================================================================================
+2026-03-02 11:55:23 | INFO     | [REQ-115523-0001] NEW QUERY RECEIVED
+2026-03-02 11:55:23 | INFO     | ================================================================================
+2026-03-02 11:55:23 | INFO     | [REQ-115523-0001] USER QUESTION: Count of total invoices.
+2026-03-02 11:55:23 | INFO     | [REQ-115523-0001] TIMESTAMP: 2026-03-02T11:55:23.184050
+2026-03-02 11:55:25 | INFO     | ------------------------------------------------------------
+2026-03-02 11:55:25 | INFO     | [REQ-115523-0001] QUERY REFINEMENT
+2026-03-02 11:55:25 | INFO     | ------------------------------------------------------------
+2026-03-02 11:55:25 | INFO     | [REQ-115523-0001] Original Query: Count of total invoices.
+2026-03-02 11:55:25 | INFO     | [REQ-115523-0001] Conversation History (0 messages):
+2026-03-02 11:55:25 | INFO     | [REQ-115523-0001] Refined Query: Count of total invoices.
+2026-03-02 11:55:25 | INFO     | [REQ-115523-0001] Query unchanged (no context dependency)
+2026-03-02 11:55:25 | INFO     | ------------------------------------------------------------
+2026-03-02 11:55:25 | INFO     | [REQ-115523-0001] VANNA SQL GENERATION
+2026-03-02 11:55:25 | INFO     | ------------------------------------------------------------
+2026-03-02 11:55:25 | INFO     | [REQ-115523-0001] Generating SQL for: Count of total invoices.
+2026-03-02 11:55:30 | INFO     | [REQ-115523-0001] SQL Generation: SUCCESS
+2026-03-02 11:55:30 | INFO     | [REQ-115523-0001] Generated SQL:
+2026-03-02 11:55:30 | INFO     | [REQ-115523-0001]   SELECT COUNT(*) AS total_invoices FROM accounts;
+2026-03-02 11:55:30 | INFO     | ------------------------------------------------------------
+2026-03-02 11:55:30 | INFO     | [REQ-115523-0001] SQL VALIDATION
+2026-03-02 11:55:30 | INFO     | ------------------------------------------------------------
+2026-03-02 11:55:30 | INFO     | [REQ-115523-0001] Validation: PASSED
+2026-03-02 11:55:30 | INFO     | [REQ-115523-0001] Sanitized SQL:
+2026-03-02 11:55:30 | INFO     | [REQ-115523-0001]   SELECT COUNT(*) AS total_invoices FROM accounts
+2026-03-02 11:55:30 | INFO     | ------------------------------------------------------------
+2026-03-02 11:55:30 | INFO     | [REQ-115523-0001] SQL EXECUTION
+2026-03-02 11:55:30 | INFO     | ------------------------------------------------------------
+2026-03-02 11:55:30 | INFO     | [REQ-115523-0001] Executing SQL against database...
+2026-03-02 11:55:30 | INFO     | [REQ-115523-0001] Execution: SUCCESS
+2026-03-02 11:55:30 | INFO     | [REQ-115523-0001] Rows Returned: 1
+2026-03-02 11:55:30 | INFO     | [REQ-115523-0001] Columns: ['total_invoices']
+2026-03-02 11:55:30 | DEBUG    | [REQ-115523-0001] Sample Data (first 3 rows):
+2026-03-02 11:55:30 | DEBUG    | [REQ-115523-0001]   Row 1: {'total_invoices': 2001}
+2026-03-02 11:55:30 | INFO     | ------------------------------------------------------------
+2026-03-02 11:55:30 | INFO     | [REQ-115523-0001] RESULT FORMATTING
+2026-03-02 11:55:30 | INFO     | ------------------------------------------------------------
+2026-03-02 11:55:30 | INFO     | [REQ-115523-0001] Data Source: unknown
+2026-03-02 11:55:30 | INFO     | [REQ-115523-0001] Row Count: 1
+2026-03-02 11:55:30 | INFO     | [REQ-115523-0001] Truncated: False
+2026-03-02 11:55:31 | INFO     | [REQ-115523-0001] Summary: Query returned 1 rows with 1 columns: total_invoices | total_invoices range: 2001.00 - 2001.00
+2026-03-02 11:55:31 | INFO     | [REQ-115523-0001] Chart Suggestion: None - Single value result
+2026-03-02 11:55:31 | INFO     | ------------------------------------------------------------
+2026-03-02 11:55:31 | INFO     | [REQ-115523-0001] LLM PROMPT BUILDING
+2026-03-02 11:55:31 | INFO     | ------------------------------------------------------------
+2026-03-02 11:55:31 | INFO     | [REQ-115523-0001] Prompt Type: semantic_analysis
+2026-03-02 11:55:31 | DEBUG    | [REQ-115523-0001] Full Prompt (11377 chars):
+2026-03-02 11:55:31 | DEBUG    | [REQ-115523-0001] Prompt Start:
+SYSTEM:
+You are an AI CFO assistant for financial analytics and invoicing. YOU MUST RESPOND WITH VALID JSON ONLY. NO MARKDOWN. NO PLAIN TEXT. ONLY JSON.
+
+**CRITICAL OUTPUT RULE - READ FIRST:**
+You MUST NEVER return raw JSON data, database output, or unformatted lists to the user.
+ALWAYS format your response as natural language with proper tables, summaries, and insights.
+
+**CRITICAL: The "response" field MUST be SHORT (2-4 sentences maximum) and conversational.**
+**DO NOT include lists of data, account numbers, or customer details in the "response" field.**
+**ALL detailed data MUST go in the "tables" array with proper headers and rows.**
+
+You are an expert in financial analytics ,reporting and invoicing. for AICFO - financial analytics, reporting, and invoicing.
+
+=== RESPONSE PRESENTATION RULES (MANDATORY) ===
+1. **Natural Language First**: The "response" field MUST contain SHORT conversational text (2-4 sentences MAXIMUM), NOT raw data
+2. **NO DATA IN RESPONSE FIELD**: Do NOT include 
+2026-03-02 11:55:31 | DEBUG    | [REQ-115523-0001] ... [middle truncated] ...
+2026-03-02 11:55:31 | DEBUG    | [REQ-115523-0001] Prompt End:
+erns]
+   - "kpi_cards": [] (optional) 
+
+=== SQL QUERY EXECUTED ===
+```sql
+SELECT COUNT(*) AS total_invoices FROM accounts
+```
+
+=== QUERY RESULTS ===
+Columns: ["total_invoices"]
+Total Rows: 1
+
+
+Data Summary: Query returned 1 rows with 1 columns: total_invoices | total_invoices range: 2001.00 - 2001.00
+
+=== DATA ===
+[
+  {
+    "total_invoices": 2001
+  }
+]
+
+Analyze the above query results and provide your response in the specified RESPONSE FORMAT based on the RESPONSE TYPE DETERMINATION rules above.
+2026-03-02 11:55:31 | INFO     | ------------------------------------------------------------
+2026-03-02 11:55:31 | INFO     | [REQ-115523-0001] LLM API REQUEST
+2026-03-02 11:55:31 | INFO     | ------------------------------------------------------------
+2026-03-02 11:55:31 | INFO     | [REQ-115523-0001] Model: gpt-4o-mini
+2026-03-02 11:55:31 | INFO     | [REQ-115523-0001] Temperature: 0.7
+2026-03-02 11:55:31 | INFO     | [REQ-115523-0001] Max Tokens: 2000
+2026-03-02 11:55:31 | INFO     | [REQ-115523-0001] Sending request to OpenAI...
+2026-03-02 11:55:34 | INFO     | ------------------------------------------------------------
+2026-03-02 11:55:34 | INFO     | [REQ-115523-0001] LLM RESPONSE RECEIVED
+2026-03-02 11:55:34 | INFO     | ------------------------------------------------------------
+2026-03-02 11:55:34 | INFO     | [REQ-115523-0001] Tokens Used: 3113
+2026-03-02 11:55:34 | INFO     | [REQ-115523-0001] Response Length: 436 chars
+2026-03-02 11:55:34 | DEBUG    | [REQ-115523-0001] Raw Response:
+2026-03-02 11:55:34 | DEBUG    | [REQ-115523-0001] {
+  "response": "There are a total of 2,001 invoices recorded. This reflects a steady volume of invoicing activity in our accounts, indicating consistent business operations.",
+  "kpi_cards": [
+    {
+      "label": "Total Invoices",
+      "value": "2001"
+    }
+  ],
+  "summary_points": [
+    "Total invoices recorded: 2,001",
+    "Indicates stable invoicing activity",
+    "Reflects consistent business operations"
+  ],
+  "tables": []
+}
+2026-03-02 11:55:34 | INFO     | ------------------------------------------------------------
+2026-03-02 11:55:34 | INFO     | [REQ-115523-0001] RESPONSE PARSING
+2026-03-02 11:55:34 | INFO     | ------------------------------------------------------------
+2026-03-02 11:55:34 | INFO     | [REQ-115523-0001] Response Text: There are a total of 2,001 invoices recorded. This reflects a steady volume of invoicing activity in our accounts, indicating consistent business operations.
+2026-03-02 11:55:34 | INFO     | [REQ-115523-0001] Charts Count: 0
+2026-03-02 11:55:34 | INFO     | [REQ-115523-0001] Tables Count: 0
+2026-03-02 11:55:34 | INFO     | [REQ-115523-0001] Summary Points: 3
+2026-03-02 11:55:34 | INFO     | ================================================================================
+2026-03-02 11:55:34 | INFO     | [REQ-115523-0001] QUERY COMPLETED SUCCESSFULLY
+2026-03-02 11:55:34 | INFO     | [REQ-115523-0001] Total Duration: 11752.06ms
+2026-03-02 11:55:34 | INFO     | ================================================================================
+2026-03-02 11:55:34 | INFO     | 
+2026-03-02 11:56:06 | INFO     | ================================================================================
+2026-03-02 11:56:06 | INFO     | [REQ-115606-0002] NEW QUERY RECEIVED
+2026-03-02 11:56:06 | INFO     | ================================================================================
+2026-03-02 11:56:06 | INFO     | [REQ-115606-0002] USER QUESTION: Show me the companies having highest profit
+2026-03-02 11:56:06 | INFO     | [REQ-115606-0002] TIMESTAMP: 2026-03-02T11:56:06.371511
+2026-03-02 11:56:11 | INFO     | ------------------------------------------------------------
+2026-03-02 11:56:11 | INFO     | [REQ-115606-0002] QUERY REFINEMENT
+2026-03-02 11:56:11 | INFO     | ------------------------------------------------------------
+2026-03-02 11:56:11 | INFO     | [REQ-115606-0002] Original Query: Show me the companies having highest profit
+2026-03-02 11:56:11 | INFO     | [REQ-115606-0002] Conversation History (1 messages):
+2026-03-02 11:56:11 | INFO     | [REQ-115606-0002]   1. Show me the companies having highest profit
+2026-03-02 11:56:11 | INFO     | [REQ-115606-0002] Refined Query: Show me the companies having highest profit.
+2026-03-02 11:56:11 | INFO     | [REQ-115606-0002] Query was modified by refinement
+2026-03-02 11:56:11 | INFO     | ------------------------------------------------------------
+2026-03-02 11:56:11 | INFO     | [REQ-115606-0002] VANNA SQL GENERATION
+2026-03-02 11:56:11 | INFO     | ------------------------------------------------------------
+2026-03-02 11:56:11 | INFO     | [REQ-115606-0002] Generating SQL for: Show me the companies having highest profit.
+2026-03-02 11:56:13 | INFO     | [REQ-115606-0002] SQL Generation: SUCCESS
+2026-03-02 11:56:13 | INFO     | [REQ-115606-0002] Generated SQL:
+2026-03-02 11:56:13 | INFO     | [REQ-115606-0002]   The LLM is not allowed to see the data in your database. Your question requires database introspection to generate the necessary SQL. Please set allow_llm_to_see_data=True to enable this.
+2026-03-02 11:56:13 | INFO     | ------------------------------------------------------------
+2026-03-02 11:56:13 | INFO     | [REQ-115606-0002] SQL VALIDATION
+2026-03-02 11:56:13 | INFO     | ------------------------------------------------------------
+2026-03-02 11:56:13 | WARNING  | [REQ-115606-0002] Validation: FAILED
+2026-03-02 11:56:13 | WARNING  | [REQ-115606-0002] Reason: Only SELECT queries are allowed
+2026-03-02 11:56:13 | ERROR    | [REQ-115606-0002] ERROR at Semantic Query: SQL validation failed: Only SELECT queries are allowed
+2026-03-02 11:59:05 | INFO     | ================================================================================
+2026-03-02 11:59:05 | INFO     | [REQ-115905-0003] NEW QUERY RECEIVED
+2026-03-02 11:59:05 | INFO     | ================================================================================
+2026-03-02 11:59:05 | INFO     | [REQ-115905-0003] USER QUESTION: Which company has the highest due payment?
+2026-03-02 11:59:05 | INFO     | [REQ-115905-0003] TIMESTAMP: 2026-03-02T11:59:05.281194
+2026-03-02 11:59:10 | INFO     | ------------------------------------------------------------
+2026-03-02 11:59:10 | INFO     | [REQ-115905-0003] QUERY REFINEMENT
+2026-03-02 11:59:10 | INFO     | ------------------------------------------------------------
+2026-03-02 11:59:10 | INFO     | [REQ-115905-0003] Original Query: Which company has the highest due payment?
+2026-03-02 11:59:10 | INFO     | [REQ-115905-0003] Conversation History (2 messages):
+2026-03-02 11:59:10 | INFO     | [REQ-115905-0003]   1. Show me the companies having highest profit
+2026-03-02 11:59:10 | INFO     | [REQ-115905-0003]   2. Show me the companies having highest profit
+2026-03-02 11:59:10 | INFO     | [REQ-115905-0003] Refined Query: Which company has the highest due payment?
+2026-03-02 11:59:10 | INFO     | [REQ-115905-0003] Query unchanged (no context dependency)
+2026-03-02 11:59:10 | INFO     | ------------------------------------------------------------
+2026-03-02 11:59:10 | INFO     | [REQ-115905-0003] VANNA SQL GENERATION
+2026-03-02 11:59:10 | INFO     | ------------------------------------------------------------
+2026-03-02 11:59:10 | INFO     | [REQ-115905-0003] Generating SQL for: Which company has the highest due payment?
+2026-03-02 11:59:15 | INFO     | [REQ-115905-0003] SQL Generation: SUCCESS
+2026-03-02 11:59:15 | INFO     | [REQ-115905-0003] Generated SQL:
+2026-03-02 11:59:15 | INFO     | [REQ-115905-0003]   SELECT invoice_to_company, SUM(balance_amount) AS total_due
+2026-03-02 11:59:15 | INFO     | [REQ-115905-0003]   FROM accounts
+2026-03-02 11:59:15 | INFO     | [REQ-115905-0003]   WHERE status IN ('overdue', 'unpaid')
+2026-03-02 11:59:15 | INFO     | [REQ-115905-0003]   GROUP BY invoice_to_company
+2026-03-02 11:59:15 | INFO     | [REQ-115905-0003]   ORDER BY total_due DESC
+2026-03-02 11:59:15 | INFO     | ------------------------------------------------------------
+2026-03-02 11:59:15 | INFO     | [REQ-115905-0003] SQL VALIDATION
+2026-03-02 11:59:15 | INFO     | ------------------------------------------------------------
+2026-03-02 11:59:15 | INFO     | [REQ-115905-0003] Validation: PASSED
+2026-03-02 11:59:15 | INFO     | [REQ-115905-0003] Sanitized SQL:
+2026-03-02 11:59:15 | INFO     | [REQ-115905-0003]   SELECT invoice_to_company, SUM(balance_amount) AS total_due
+2026-03-02 11:59:15 | INFO     | [REQ-115905-0003]   FROM accounts
+2026-03-02 11:59:15 | INFO     | [REQ-115905-0003]   WHERE status IN ('overdue', 'unpaid')
+2026-03-02 11:59:15 | INFO     | [REQ-115905-0003]   GROUP BY invoice_to_company
+2026-03-02 11:59:15 | INFO     | [REQ-115905-0003]   ORDER BY total_due DESC
+2026-03-02 11:59:15 | INFO     | ------------------------------------------------------------
+2026-03-02 11:59:15 | INFO     | [REQ-115905-0003] SQL EXECUTION
+2026-03-02 11:59:15 | INFO     | ------------------------------------------------------------
+2026-03-02 11:59:15 | INFO     | [REQ-115905-0003] Executing SQL against database...
+2026-03-02 11:59:16 | INFO     | [REQ-115905-0003] Execution: SUCCESS
+2026-03-02 11:59:16 | INFO     | [REQ-115905-0003] Rows Returned: 0
+2026-03-02 11:59:16 | INFO     | [REQ-115905-0003] Columns: ['invoice_to_company', 'total_due']
+2026-03-02 11:59:16 | INFO     | ------------------------------------------------------------
+2026-03-02 11:59:16 | INFO     | [REQ-115905-0003] RESULT FORMATTING
+2026-03-02 11:59:16 | INFO     | ------------------------------------------------------------
+2026-03-02 11:59:16 | INFO     | [REQ-115905-0003] Data Source: unknown
+2026-03-02 11:59:16 | INFO     | [REQ-115905-0003] Row Count: 0
+2026-03-02 11:59:16 | INFO     | [REQ-115905-0003] Truncated: False
+2026-03-02 11:59:16 | INFO     | [REQ-115905-0003] Summary: No data returned from query.
+2026-03-02 11:59:16 | INFO     | ------------------------------------------------------------
+2026-03-02 11:59:16 | INFO     | [REQ-115905-0003] LLM PROMPT BUILDING
+2026-03-02 11:59:16 | INFO     | ------------------------------------------------------------
+2026-03-02 11:59:16 | INFO     | [REQ-115905-0003] Prompt Type: semantic_analysis
+2026-03-02 11:59:16 | DEBUG    | [REQ-115905-0003] Full Prompt (11393 chars):
+2026-03-02 11:59:16 | DEBUG    | [REQ-115905-0003] Prompt Start:
+SYSTEM:
+You are an AI CFO assistant for financial analytics and invoicing. YOU MUST RESPOND WITH VALID JSON ONLY. NO MARKDOWN. NO PLAIN TEXT. ONLY JSON.
+
+**CRITICAL OUTPUT RULE - READ FIRST:**
+You MUST NEVER return raw JSON data, database output, or unformatted lists to the user.
+ALWAYS format your response as natural language with proper tables, summaries, and insights.
+
+**CRITICAL: The "response" field MUST be SHORT (2-4 sentences maximum) and conversational.**
+**DO NOT include lists of data, account numbers, or customer details in the "response" field.**
+**ALL detailed data MUST go in the "tables" array with proper headers and rows.**
+
+You are an expert in financial analytics ,reporting and invoicing. for AICFO - financial analytics, reporting, and invoicing.
+
+=== RESPONSE PRESENTATION RULES (MANDATORY) ===
+1. **Natural Language First**: The "response" field MUST contain SHORT conversational text (2-4 sentences MAXIMUM), NOT raw data
+2. **NO DATA IN RESPONSE FIELD**: Do NOT include 
+2026-03-02 11:59:16 | DEBUG    | [REQ-115905-0003] ... [middle truncated] ...
+2026-03-02 11:59:16 | DEBUG    | [REQ-115905-0003] Prompt End:
+tterns]
+   - "kpi_cards": [] (optional) 
+
+=== SQL QUERY EXECUTED ===
+```sql
+SELECT invoice_to_company, SUM(balance_amount) AS total_due
+FROM accounts
+WHERE status IN ('overdue', 'unpaid')
+GROUP BY invoice_to_company
+ORDER BY total_due DESC
+```
+
+=== QUERY RESULTS ===
+Columns: []
+Total Rows: 0
+
+
+Data Summary: No data returned from query.
+
+=== DATA ===
+[]
+
+Analyze the above query results and provide your response in the specified RESPONSE FORMAT based on the RESPONSE TYPE DETERMINATION rules above.
+2026-03-02 11:59:17 | INFO     | ------------------------------------------------------------
+2026-03-02 11:59:17 | INFO     | [REQ-115905-0003] LLM API REQUEST
+2026-03-02 11:59:17 | INFO     | ------------------------------------------------------------
+2026-03-02 11:59:17 | INFO     | [REQ-115905-0003] Model: gpt-4o-mini
+2026-03-02 11:59:17 | INFO     | [REQ-115905-0003] Temperature: 0.7
+2026-03-02 11:59:17 | INFO     | [REQ-115905-0003] Max Tokens: 2000
+2026-03-02 11:59:17 | INFO     | [REQ-115905-0003] Sending request to OpenAI...
+2026-03-02 11:59:19 | INFO     | ------------------------------------------------------------
+2026-03-02 11:59:19 | INFO     | [REQ-115905-0003] LLM RESPONSE RECEIVED
+2026-03-02 11:59:19 | INFO     | ------------------------------------------------------------
+2026-03-02 11:59:19 | INFO     | [REQ-115905-0003] Tokens Used: 3071
+2026-03-02 11:59:19 | INFO     | [REQ-115905-0003] Response Length: 346 chars
+2026-03-02 11:59:19 | DEBUG    | [REQ-115905-0003] Raw Response:
+2026-03-02 11:59:19 | DEBUG    | [REQ-115905-0003] {
+  "response": "It appears there are currently no companies with overdue or unpaid invoices. Therefore, there is no data available regarding due payments at this time.",
+  "tables": [],
+  "summary_points": [
+    "No overdue or unpaid invoices found.",
+    "Current exposure is zero across all companies."
+  ],
+  "charts": [],
+  "kpi_cards": []
+}
+2026-03-02 11:59:19 | INFO     | ------------------------------------------------------------
+2026-03-02 11:59:19 | INFO     | [REQ-115905-0003] RESPONSE PARSING
+2026-03-02 11:59:19 | INFO     | ------------------------------------------------------------
+2026-03-02 11:59:19 | INFO     | [REQ-115905-0003] Response Text: It appears there are currently no companies with overdue or unpaid invoices. Therefore, there is no data available regarding due payments at this time.
+2026-03-02 11:59:19 | INFO     | [REQ-115905-0003] Charts Count: 0
+2026-03-02 11:59:19 | INFO     | [REQ-115905-0003] Tables Count: 0
+2026-03-02 11:59:19 | INFO     | [REQ-115905-0003] Summary Points: 2
+2026-03-02 11:59:19 | INFO     | ================================================================================
+2026-03-02 11:59:19 | INFO     | [REQ-115905-0003] QUERY COMPLETED SUCCESSFULLY
+2026-03-02 11:59:19 | INFO     | [REQ-115905-0003] Total Duration: 14490.53ms
+2026-03-02 11:59:19 | INFO     | ================================================================================
+2026-03-02 11:59:19 | INFO     | 
+2026-03-02 12:00:56 | INFO     | ================================================================================
+2026-03-02 12:00:56 | INFO     | [REQ-120056-0004] NEW QUERY RECEIVED
+2026-03-02 12:00:56 | INFO     | ================================================================================
+2026-03-02 12:00:56 | INFO     | [REQ-120056-0004] USER QUESTION: having partial payment.
+2026-03-02 12:00:56 | INFO     | [REQ-120056-0004] TIMESTAMP: 2026-03-02T12:00:56.806354
+2026-03-02 12:01:02 | INFO     | ------------------------------------------------------------
+2026-03-02 12:01:02 | INFO     | [REQ-120056-0004] QUERY REFINEMENT
+2026-03-02 12:01:02 | INFO     | ------------------------------------------------------------
+2026-03-02 12:01:02 | INFO     | [REQ-120056-0004] Original Query: having partial payment.
+2026-03-02 12:01:02 | INFO     | [REQ-120056-0004] Conversation History (3 messages):
+2026-03-02 12:01:02 | INFO     | [REQ-120056-0004]   1. Show me the companies having highest profit
+2026-03-02 12:01:02 | INFO     | [REQ-120056-0004]   2. Show me the companies having highest profit
+2026-03-02 12:01:02 | INFO     | [REQ-120056-0004]   3. Which company has the highest due payment?
+2026-03-02 12:01:02 | INFO     | [REQ-120056-0004] Refined Query: Which company has a partial payment?
+2026-03-02 12:01:02 | INFO     | [REQ-120056-0004] Query was modified by refinement
+2026-03-02 12:01:02 | INFO     | ------------------------------------------------------------
+2026-03-02 12:01:02 | INFO     | [REQ-120056-0004] VANNA SQL GENERATION
+2026-03-02 12:01:02 | INFO     | ------------------------------------------------------------
+2026-03-02 12:01:02 | INFO     | [REQ-120056-0004] Generating SQL for: Which company has a partial payment?
+2026-03-02 12:07:56 | INFO     | [REQ-120056-0004] SQL Generation: SUCCESS
+2026-03-02 12:07:56 | INFO     | [REQ-120056-0004] Generated SQL:
+2026-03-02 12:07:56 | INFO     | [REQ-120056-0004]   SELECT DISTINCT c.company_name
+2026-03-02 12:07:56 | INFO     | [REQ-120056-0004]   FROM accounts a
+2026-03-02 12:07:56 | INFO     | [REQ-120056-0004]   JOIN company c ON a.invoice_to_company = c.id
+2026-03-02 12:07:56 | INFO     | [REQ-120056-0004]   WHERE a.status = 'partial';
+2026-03-02 12:07:56 | INFO     | ------------------------------------------------------------
+2026-03-02 12:07:56 | INFO     | [REQ-120056-0004] SQL VALIDATION
+2026-03-02 12:07:56 | INFO     | ------------------------------------------------------------
+2026-03-02 12:07:56 | INFO     | [REQ-120056-0004] Validation: PASSED
+2026-03-02 12:07:56 | INFO     | [REQ-120056-0004] Sanitized SQL:
+2026-03-02 12:07:56 | INFO     | [REQ-120056-0004]   SELECT DISTINCT c.company_name
+2026-03-02 12:07:56 | INFO     | [REQ-120056-0004]   FROM accounts a
+2026-03-02 12:07:56 | INFO     | [REQ-120056-0004]   JOIN company c ON a.invoice_to_company = c.id
+2026-03-02 12:07:56 | INFO     | [REQ-120056-0004]   WHERE a.status = 'partial'
+2026-03-02 12:07:56 | INFO     | ------------------------------------------------------------
+2026-03-02 12:07:56 | INFO     | [REQ-120056-0004] SQL EXECUTION
+2026-03-02 12:07:56 | INFO     | ------------------------------------------------------------
+2026-03-02 12:07:56 | INFO     | [REQ-120056-0004] Executing SQL against database...
+2026-03-02 12:07:57 | INFO     | [REQ-120056-0004] Execution: SUCCESS
+2026-03-02 12:07:57 | INFO     | [REQ-120056-0004] Rows Returned: 100
+2026-03-02 12:07:57 | INFO     | [REQ-120056-0004] Columns: ['company_name']
+2026-03-02 12:07:57 | DEBUG    | [REQ-120056-0004] Sample Data (first 3 rows):
+2026-03-02 12:07:57 | DEBUG    | [REQ-120056-0004]   Row 1: {'company_name': 'GlobalHaul Express'}
+2026-03-02 12:07:57 | DEBUG    | [REQ-120056-0004]   Row 2: {'company_name': 'RapidFreight Logistics'}
+2026-03-02 12:07:57 | DEBUG    | [REQ-120056-0004]   Row 3: {'company_name': 'PrimeStone Contractors'}
+2026-03-02 12:07:57 | INFO     | ------------------------------------------------------------
+2026-03-02 12:07:57 | INFO     | [REQ-120056-0004] RESULT FORMATTING
+2026-03-02 12:07:57 | INFO     | ------------------------------------------------------------
+2026-03-02 12:07:57 | INFO     | [REQ-120056-0004] Data Source: unknown
+2026-03-02 12:07:57 | INFO     | [REQ-120056-0004] Row Count: 100
+2026-03-02 12:07:57 | INFO     | [REQ-120056-0004] Truncated: False
+2026-03-02 12:07:57 | INFO     | [REQ-120056-0004] Summary: Query returned 100 rows with 1 columns: company_name
+2026-03-02 12:07:57 | INFO     | [REQ-120056-0004] Chart Suggestion: table - Complex data structure
+2026-03-02 12:07:57 | INFO     | ------------------------------------------------------------
+2026-03-02 12:07:57 | INFO     | [REQ-120056-0004] LLM PROMPT BUILDING
+2026-03-02 12:07:57 | INFO     | ------------------------------------------------------------
+2026-03-02 12:07:57 | INFO     | [REQ-120056-0004] Prompt Type: semantic_analysis
+2026-03-02 12:07:57 | DEBUG    | [REQ-120056-0004] Full Prompt (14139 chars):
+2026-03-02 12:07:57 | DEBUG    | [REQ-120056-0004] Prompt Start:
+SYSTEM:
+You are an AI CFO assistant for financial analytics and invoicing. YOU MUST RESPOND WITH VALID JSON ONLY. NO MARKDOWN. NO PLAIN TEXT. ONLY JSON.
+
+**CRITICAL OUTPUT RULE - READ FIRST:**
+You MUST NEVER return raw JSON data, database output, or unformatted lists to the user.
+ALWAYS format your response as natural language with proper tables, summaries, and insights.
+
+**CRITICAL: The "response" field MUST be SHORT (2-4 sentences maximum) and conversational.**
+**DO NOT include lists of data, account numbers, or customer details in the "response" field.**
+**ALL detailed data MUST go in the "tables" array with proper headers and rows.**
+
+You are an expert in financial analytics ,reporting and invoicing. for AICFO - financial analytics, reporting, and invoicing.
+
+=== RESPONSE PRESENTATION RULES (MANDATORY) ===
+1. **Natural Language First**: The "response" field MUST contain SHORT conversational text (2-4 sentences MAXIMUM), NOT raw data
+2. **NO DATA IN RESPONSE FIELD**: Do NOT include 
+2026-03-02 12:07:57 | DEBUG    | [REQ-120056-0004] ... [middle truncated] ...
+2026-03-02 12:07:57 | DEBUG    | [REQ-120056-0004] Prompt End:
+ "company_name": "MetroBuild Infrastructure"
+  },
+  {
+    "company_name": "PetroMax Refinery"
+  },
+  {
+    "company_name": "DriveTech Automotive"
+  },
+  {
+    "company_name": "HarvestPrime Organics"
+  },
+  {
+    "company_name": "UrbanTaste Catering"
+  },
+  {
+    "company_name": "MetroFab Industries"
+  },
+  {
+    "company_name": "WindCore Systems"
+  }
+]
+
+Analyze the above query results and provide your response in the specified RESPONSE FORMAT based on the RESPONSE TYPE DETERMINATION rules above.
+2026-03-02 12:07:57 | INFO     | ------------------------------------------------------------
+2026-03-02 12:07:57 | INFO     | [REQ-120056-0004] LLM API REQUEST
+2026-03-02 12:07:57 | INFO     | ------------------------------------------------------------
+2026-03-02 12:07:57 | INFO     | [REQ-120056-0004] Model: gpt-4o-mini
+2026-03-02 12:07:57 | INFO     | [REQ-120056-0004] Temperature: 0.7
+2026-03-02 12:07:57 | INFO     | [REQ-120056-0004] Max Tokens: 2000
+2026-03-02 12:07:57 | INFO     | [REQ-120056-0004] Sending request to OpenAI...
+2026-03-02 12:08:12 | INFO     | ------------------------------------------------------------
+2026-03-02 12:08:12 | INFO     | [REQ-120056-0004] LLM RESPONSE RECEIVED
+2026-03-02 12:08:12 | INFO     | ------------------------------------------------------------
+2026-03-02 12:08:12 | INFO     | [REQ-120056-0004] Tokens Used: 4195
+2026-03-02 12:08:12 | INFO     | [REQ-120056-0004] Response Length: 2154 chars
+2026-03-02 12:08:12 | DEBUG    | [REQ-120056-0004] Raw Response:
+2026-03-02 12:08:12 | DEBUG    | [REQ-120056-0004] {
+  "response": "I found 100 companies with partial payments on their accounts. This indicates a potential cash flow issue that may need to be addressed to maintain financial stability.",
+  "tables": [{
+    "title": "Companies with Partial Payments",
+    "headers": ["Company Name"],
+    "rows": [
+      ["GlobalHaul Express"],
+      ["RapidFreight Logistics"],
+      ["PrimeStone Contractors"],
+      ["Prime Diagnostic Center"],
+      ["IronWorks Manufacturing"],
+      ["DefendTech Systems"],
+      ["GreenField Agriculture"],
+      ["FarmFresh Produce Co"],
+      ["SkyJet Aerospace"],
+      ["PrimeLedger Financial"],
+      ["SecureLife Insurance"],
+      ["GoldPeak Minerals"],
+      ["LifeGen Pharmaceuticals"],
+      ["IronPeak Construction"],
+      ["DeepEarth Mining Ltd"],
+      ["GrandVista Resorts"],
+      ["BrightFuture Academy"],
+      ["NextGen Digital Media"],
+      ["SilverScreen Productions"],
+      ["ShopEase E-commerce"],
+      ["ComfortNest Hospitality"],
+      ["HydroFlow Utilities"],
+      ["TrendBasket Online"],
+      ["BlueLine Supply Chain"],
+      ["National Banking Corp"],
+      ["NovaFlight Technologies"],
+      ["HarborView Realty"],
+      ["SolarRise Renewables"],
+      ["MineCore Resources"],
+      ["Precision Steel Ltd"],
+      ["UrbanAuto Works"],
+      ["SkyBridge Cargo Airlines"],
+      ["GoldenGrain Mills"],
+      ["Skyline Construction"],
+      ["NextWave Superstores"],
+      ["BuySmart Digital Retail"],
+      ["Summit Wealth Management"],
+      ["... [truncated, total 2154 chars]
+2026-03-02 12:08:12 | INFO     | ------------------------------------------------------------
+2026-03-02 12:08:12 | INFO     | [REQ-120056-0004] RESPONSE PARSING
+2026-03-02 12:08:12 | INFO     | ------------------------------------------------------------
+2026-03-02 12:08:12 | INFO     | [REQ-120056-0004] Response Text: I found 100 companies with partial payments on their accounts. This indicates a potential cash flow issue that may need to be addressed to maintain financial stability.
+2026-03-02 12:08:12 | INFO     | [REQ-120056-0004] Charts Count: 0
+2026-03-02 12:08:12 | INFO     | [REQ-120056-0004] Tables Count: 1
+2026-03-02 12:08:12 | INFO     | [REQ-120056-0004] Summary Points: 3
+2026-03-02 12:08:12 | DEBUG    | [REQ-120056-0004] Table 1: title=Companies with Partial Payments, rows=10
+2026-03-02 12:08:12 | INFO     | ================================================================================
+2026-03-02 12:08:12 | INFO     | [REQ-120056-0004] QUERY COMPLETED SUCCESSFULLY
+2026-03-02 12:08:12 | INFO     | [REQ-120056-0004] Total Duration: 435754.50ms
+2026-03-02 12:08:12 | INFO     | ================================================================================
+2026-03-02 12:08:12 | INFO     | 
+2026-03-02 15:08:23 | INFO     | ================================================================================
+2026-03-02 15:08:23 | INFO     | [REQ-150823-0001] NEW QUERY RECEIVED
+2026-03-02 15:08:23 | INFO     | ================================================================================
+2026-03-02 15:08:23 | INFO     | [REQ-150823-0001] USER QUESTION: Show top 10 accounts by invoice amount.
+2026-03-02 15:08:23 | INFO     | [REQ-150823-0001] TIMESTAMP: 2026-03-02T15:08:23.667316
+2026-03-02 15:08:25 | INFO     | ------------------------------------------------------------
+2026-03-02 15:08:25 | INFO     | [REQ-150823-0001] QUERY REFINEMENT
+2026-03-02 15:08:25 | INFO     | ------------------------------------------------------------
+2026-03-02 15:08:25 | INFO     | [REQ-150823-0001] Original Query: Show top 10 accounts by invoice amount.
+2026-03-02 15:08:25 | INFO     | [REQ-150823-0001] Conversation History (0 messages):
+2026-03-02 15:08:25 | INFO     | [REQ-150823-0001] Refined Query: Show top 10 accounts by invoice amount.
+2026-03-02 15:08:25 | INFO     | [REQ-150823-0001] Query unchanged (no context dependency)
+2026-03-02 15:08:25 | INFO     | ------------------------------------------------------------
+2026-03-02 15:08:25 | INFO     | [REQ-150823-0001] VANNA SQL GENERATION
+2026-03-02 15:08:25 | INFO     | ------------------------------------------------------------
+2026-03-02 15:08:25 | INFO     | [REQ-150823-0001] Generating SQL for: Show top 10 accounts by invoice amount.
+2026-03-02 15:08:29 | INFO     | [REQ-150823-0001] SQL Generation: SUCCESS
+2026-03-02 15:08:29 | INFO     | [REQ-150823-0001] Generated SQL:
+2026-03-02 15:08:29 | INFO     | [REQ-150823-0001]   SELECT *
+2026-03-02 15:08:29 | INFO     | [REQ-150823-0001]   FROM accounts
+2026-03-02 15:08:29 | INFO     | [REQ-150823-0001]   ORDER BY invoice_amount DESC
+2026-03-02 15:08:29 | INFO     | ------------------------------------------------------------
+2026-03-02 15:08:29 | INFO     | [REQ-150823-0001] SQL VALIDATION
+2026-03-02 15:08:29 | INFO     | ------------------------------------------------------------
+2026-03-02 15:08:29 | INFO     | [REQ-150823-0001] Validation: PASSED
+2026-03-02 15:08:29 | INFO     | [REQ-150823-0001] Sanitized SQL:
+2026-03-02 15:08:29 | INFO     | [REQ-150823-0001]   SELECT *
+2026-03-02 15:08:29 | INFO     | [REQ-150823-0001]   FROM accounts
+2026-03-02 15:08:29 | INFO     | [REQ-150823-0001]   ORDER BY invoice_amount DESC
+2026-03-02 15:08:29 | INFO     | ------------------------------------------------------------
+2026-03-02 15:08:29 | INFO     | [REQ-150823-0001] SQL EXECUTION
+2026-03-02 15:08:29 | INFO     | ------------------------------------------------------------
+2026-03-02 15:08:29 | INFO     | [REQ-150823-0001] Executing SQL against database...
+2026-03-02 15:08:30 | INFO     | [REQ-150823-0001] Execution: SUCCESS
+2026-03-02 15:08:30 | INFO     | [REQ-150823-0001] Rows Returned: 1000
+2026-03-02 15:08:30 | INFO     | [REQ-150823-0001] Columns: ['invoice_id', 'invoice_from_company', 'invoice_to_company', 'invoice_amount', 'paid_amount', 'balance_amount', 'currency', 'invoice_date', 'due_date', 'created_at', 'updated_at', 'status']
+2026-03-02 15:08:30 | DEBUG    | [REQ-150823-0001] Sample Data (first 3 rows):
+2026-03-02 15:08:30 | DEBUG    | [REQ-150823-0001]   Row 1: {'invoice_id': 159, 'invoice_from_company': 16, 'invoice_to_company': 30, 'invoice_amount': 249998.49, 'paid_amount': 16673.72, 'balance_amount': 233324.77, 'currency': 'GBP', 'invoice_date': datetime.date(2025, 11, 22), 'due_date': datetime.date(2026, 1, 14), 'created_at': Timestamp('2026-02-20 06:... [truncated, total 377 chars]
+2026-03-02 15:08:30 | DEBUG    | [REQ-150823-0001]   Row 2: {'invoice_id': 2649, 'invoice_from_company': 20, 'invoice_to_company': 32, 'invoice_amount': 249978.26, 'paid_amount': 4000.58, 'balance_amount': 245977.68, 'currency': 'USD', 'invoice_date': datetime.date(2025, 3, 30), 'due_date': datetime.date(2025, 8, 29), 'created_at': Timestamp('2026-02-20 07:0... [truncated, total 376 chars]
+2026-03-02 15:08:30 | DEBUG    | [REQ-150823-0001]   Row 3: {'invoice_id': 17, 'invoice_from_company': 16, 'invoice_to_company': 90, 'invoice_amount': 249720.94, 'paid_amount': 49055.54, 'balance_amount': 200665.4, 'currency': 'USD', 'invoice_date': datetime.date(2025, 7, 2), 'due_date': datetime.date(2025, 5, 28), 'created_at': Timestamp('2026-02-20 06:58:1... [truncated, total 373 chars]
+2026-03-02 15:08:30 | INFO     | ------------------------------------------------------------
+2026-03-02 15:08:30 | INFO     | [REQ-150823-0001] RESULT FORMATTING
+2026-03-02 15:08:30 | INFO     | ------------------------------------------------------------
+2026-03-02 15:08:30 | INFO     | [REQ-150823-0001] Data Source: unknown
+2026-03-02 15:08:30 | INFO     | [REQ-150823-0001] Row Count: 2001
+2026-03-02 15:08:30 | INFO     | [REQ-150823-0001] Truncated: True
+2026-03-02 15:08:30 | INFO     | [REQ-150823-0001] Summary: Query returned 2001 rows (showing first 100) with 12 columns: invoice_id, invoice_from_company, invoice_to_company, invoice_amount, paid_amount and 7 more | invoice_id range: 17.00 - 2845.00 | invoice_from_company range: 1.00 - 100.00 | invoice_to_company range: 3.00 - 100.00
+2026-03-02 15:08:30 | INFO     | [REQ-150823-0001] Chart Suggestion: line - Time series data
+2026-03-02 15:08:30 | INFO     | ------------------------------------------------------------
+2026-03-02 15:08:30 | INFO     | [REQ-150823-0001] LLM PROMPT BUILDING
+2026-03-02 15:08:30 | INFO     | ------------------------------------------------------------
+2026-03-02 15:08:30 | INFO     | [REQ-150823-0001] Prompt Type: semantic_analysis
+2026-03-02 15:08:30 | DEBUG    | [REQ-150823-0001] Full Prompt (17904 chars):
+2026-03-02 15:08:30 | DEBUG    | [REQ-150823-0001] Prompt Start:
+SYSTEM:
+You are an AI CFO assistant for financial analytics and invoicing. YOU MUST RESPOND WITH VALID JSON ONLY. NO MARKDOWN. NO PLAIN TEXT. ONLY JSON.
+
+**CRITICAL OUTPUT RULE - READ FIRST:**
+You MUST NEVER return raw JSON data, database output, or unformatted lists to the user.
+ALWAYS format your response as natural language with proper tables, summaries, and insights.
+
+**CRITICAL: The "response" field MUST be SHORT (2-4 sentences maximum) and conversational.**
+**DO NOT include lists of data, account numbers, or customer details in the "response" field.**
+**ALL detailed data MUST go in the "tables" array with proper headers and rows.**
+
+You are an expert in financial analytics ,reporting and invoicing. for AICFO - financial analytics, reporting, and invoicing.
+
+=== RESPONSE PRESENTATION RULES (MANDATORY) ===
+1. **Natural Language First**: The "response" field MUST contain SHORT conversational text (2-4 sentences MAXIMUM), NOT raw data
+2. **NO DATA IN RESPONSE FIELD**: Do NOT include 
+2026-03-02 15:08:30 | DEBUG    | [REQ-150823-0001] ... [middle truncated] ...
+2026-03-02 15:08:30 | DEBUG    | [REQ-150823-0001] Prompt End:
+_at": "2026-03-02T07:16:13",
+    "status": "overdue"
+  },
+  {
+    "invoice_id": 1149,
+    "invoice_from_company": 79,
+    "invoice_to_company": 87,
+    "invoice_amount": 248276.44,
+    "paid_amount": 75030.04,
+    "balance_amount": 173246.4,
+    "currency": "USD",
+    "invoice_date": "2025-10-13",
+    "due_date": "2025-11-14
+... [truncated for brevity]
+
+Analyze the above query results and provide your response in the specified RESPONSE FORMAT based on the RESPONSE TYPE DETERMINATION rules above.
+2026-03-02 15:08:30 | INFO     | ------------------------------------------------------------
+2026-03-02 15:08:30 | INFO     | [REQ-150823-0001] LLM API REQUEST
+2026-03-02 15:08:30 | INFO     | ------------------------------------------------------------
+2026-03-02 15:08:30 | INFO     | [REQ-150823-0001] Model: gpt-4o-mini
+2026-03-02 15:08:30 | INFO     | [REQ-150823-0001] Temperature: 0.7
+2026-03-02 15:08:30 | INFO     | [REQ-150823-0001] Max Tokens: 2000
+2026-03-02 15:08:30 | INFO     | [REQ-150823-0001] Sending request to OpenAI...
+2026-03-02 15:09:00 | INFO     | ------------------------------------------------------------
+2026-03-02 15:09:00 | INFO     | [REQ-150823-0001] LLM RESPONSE RECEIVED
+2026-03-02 15:09:00 | INFO     | ------------------------------------------------------------
+2026-03-02 15:09:00 | INFO     | [REQ-150823-0001] Tokens Used: 6090
+2026-03-02 15:09:00 | INFO     | [REQ-150823-0001] Response Length: 1828 chars
+2026-03-02 15:09:00 | DEBUG    | [REQ-150823-0001] Raw Response:
+2026-03-02 15:09:00 | DEBUG    | [REQ-150823-0001] {
+  "response": "I found the top 10 accounts by invoice amount, showcasing significant outstanding balances. The largest invoice amounts indicate strong business engagements, but also potential cash flow concerns if these remain unpaid.",
+  "tables": [{
+    "title": "Top 10 Accounts by Invoice Amount",
+    "headers": ["Invoice ID", "From Company", "To Company", "Invoice Amount", "Paid Amount", "Balance Amount", "Currency", "Invoice Date", "Due Date", "Status"],
+    "rows": [
+      [159, 16, 30, 249998.49, 16673.72, 233324.77, "GBP", "2025-11-22", "2026-01-14", "overdue"],
+      [2649, 20, 32, 249978.26, 4000.58, 245977.68, "USD", "2025-03-30", "2025-08-29", "overdue"],
+      [17, 16, 90, 249720.94, 49055.54, 200665.4, "USD", "2025-07-02", "2025-05-28", "overdue"],
+      [1379, 39, 3, 249682.62, 128406.8, 121275.82, "USD", "2025-07-25", "2025-10-26", "overdue"],
+      [2645, 52, 11, 249660.58, 59976.13, 189684.45, "GBP", "2025-08-02", "2025-11-28", "overdue"],
+      [1381, 29, 37, 249626.8, 94722.98, 154903.82, "EUR", "2025-12-13", "2025-07-12", "overdue"],
+      [392, 73, 24, 249523.52, 28415.42, 221108.1, "USD", "2025-07-21", "2025-06-22", "overdue"],
+      [29, 97, 78, 248786.58, 43940.76, 204845.82, "EUR", "2025-11-30", "2025-08-23", "overdue"],
+      [2826, 66, 80, 248731.56, 145606.2, 103125.36, "USD", "2025-09-11", "2025-03-15", "overdue"],
+      [134, 18, 91, 248703.56, 19138.79, 229564.77, "GBP", "2025-07-01", "2025-08-19", "overdue"]
+    ]
+  }],
+  "summary_points": [... [truncated, total 1828 chars]
+2026-03-02 15:09:00 | INFO     | ------------------------------------------------------------
+2026-03-02 15:09:00 | INFO     | [REQ-150823-0001] RESPONSE PARSING
+2026-03-02 15:09:00 | INFO     | ------------------------------------------------------------
+2026-03-02 15:09:00 | INFO     | [REQ-150823-0001] Response Text: I found the top 10 accounts by invoice amount, showcasing significant outstanding balances. The largest invoice amounts indicate strong business engagements, but also potential cash flow concerns if these remain unpaid.
+2026-03-02 15:09:00 | INFO     | [REQ-150823-0001] Charts Count: 0
+2026-03-02 15:09:00 | INFO     | [REQ-150823-0001] Tables Count: 1
+2026-03-02 15:09:00 | INFO     | [REQ-150823-0001] Summary Points: 3
+2026-03-02 15:09:00 | DEBUG    | [REQ-150823-0001] Table 1: title=Top 10 Accounts by Invoice Amount, rows=10
+2026-03-02 15:09:00 | INFO     | ================================================================================
+2026-03-02 15:09:00 | INFO     | [REQ-150823-0001] QUERY COMPLETED SUCCESSFULLY
+2026-03-02 15:09:00 | INFO     | [REQ-150823-0001] Total Duration: 36480.37ms
+2026-03-02 15:09:00 | INFO     | ================================================================================
+2026-03-02 15:09:00 | INFO     | 
+2026-03-02 15:14:44 | INFO     | ================================================================================
+2026-03-02 15:14:44 | INFO     | [REQ-151444-0002] NEW QUERY RECEIVED
+2026-03-02 15:14:44 | INFO     | ================================================================================
+2026-03-02 15:14:44 | INFO     | [REQ-151444-0002] USER QUESTION: How many invoices are overdue
+2026-03-02 15:14:44 | INFO     | [REQ-151444-0002] TIMESTAMP: 2026-03-02T15:14:44.457713
+2026-03-02 15:14:47 | INFO     | ------------------------------------------------------------
+2026-03-02 15:14:47 | INFO     | [REQ-151444-0002] QUERY REFINEMENT
+2026-03-02 15:14:47 | INFO     | ------------------------------------------------------------
+2026-03-02 15:14:47 | INFO     | [REQ-151444-0002] Original Query: How many invoices are overdue
+2026-03-02 15:14:47 | INFO     | [REQ-151444-0002] Conversation History (4 messages):
+2026-03-02 15:14:47 | INFO     | [REQ-151444-0002]   1. Show me the companies having highest profit
+2026-03-02 15:14:47 | INFO     | [REQ-151444-0002]   2. Show me the companies having highest profit
+2026-03-02 15:14:47 | INFO     | [REQ-151444-0002]   3. Which company has the highest due payment?
+2026-03-02 15:14:47 | INFO     | [REQ-151444-0002]   4. having partial payment.
+2026-03-02 15:14:47 | INFO     | [REQ-151444-0002] Refined Query: How many invoices are overdue?
+2026-03-02 15:14:47 | INFO     | [REQ-151444-0002] Query was modified by refinement
+2026-03-02 15:14:47 | INFO     | ------------------------------------------------------------
+2026-03-02 15:14:47 | INFO     | [REQ-151444-0002] VANNA SQL GENERATION
+2026-03-02 15:14:47 | INFO     | ------------------------------------------------------------
+2026-03-02 15:14:47 | INFO     | [REQ-151444-0002] Generating SQL for: How many invoices are overdue?
+2026-03-02 15:14:53 | INFO     | [REQ-151444-0002] SQL Generation: SUCCESS
+2026-03-02 15:14:53 | INFO     | [REQ-151444-0002] Generated SQL:
+2026-03-02 15:14:53 | INFO     | [REQ-151444-0002]   SELECT COUNT(*) AS overdue_invoices_count
+2026-03-02 15:14:53 | INFO     | [REQ-151444-0002]   FROM accounts
+2026-03-02 15:14:53 | INFO     | [REQ-151444-0002]   WHERE status = 'overdue';
+2026-03-02 15:14:53 | INFO     | ------------------------------------------------------------
+2026-03-02 15:14:53 | INFO     | [REQ-151444-0002] SQL VALIDATION
+2026-03-02 15:14:53 | INFO     | ------------------------------------------------------------
+2026-03-02 15:14:53 | INFO     | [REQ-151444-0002] Validation: PASSED
+2026-03-02 15:14:53 | INFO     | [REQ-151444-0002] Sanitized SQL:
+2026-03-02 15:14:53 | INFO     | [REQ-151444-0002]   SELECT COUNT(*) AS overdue_invoices_count
+2026-03-02 15:14:53 | INFO     | [REQ-151444-0002]   FROM accounts
+2026-03-02 15:14:53 | INFO     | [REQ-151444-0002]   WHERE status = 'overdue'
+2026-03-02 15:14:53 | INFO     | ------------------------------------------------------------
+2026-03-02 15:14:53 | INFO     | [REQ-151444-0002] SQL EXECUTION
+2026-03-02 15:14:53 | INFO     | ------------------------------------------------------------
+2026-03-02 15:14:53 | INFO     | [REQ-151444-0002] Executing SQL against database...
+2026-03-02 15:14:53 | INFO     | [REQ-151444-0002] Execution: SUCCESS
+2026-03-02 15:14:53 | INFO     | [REQ-151444-0002] Rows Returned: 1
+2026-03-02 15:14:53 | INFO     | [REQ-151444-0002] Columns: ['overdue_invoices_count']
+2026-03-02 15:14:53 | DEBUG    | [REQ-151444-0002] Sample Data (first 3 rows):
+2026-03-02 15:14:53 | DEBUG    | [REQ-151444-0002]   Row 1: {'overdue_invoices_count': 1508}
+2026-03-02 15:14:53 | INFO     | ------------------------------------------------------------
+2026-03-02 15:14:53 | INFO     | [REQ-151444-0002] RESULT FORMATTING
+2026-03-02 15:14:53 | INFO     | ------------------------------------------------------------
+2026-03-02 15:14:53 | INFO     | [REQ-151444-0002] Data Source: unknown
+2026-03-02 15:14:53 | INFO     | [REQ-151444-0002] Row Count: 1
+2026-03-02 15:14:53 | INFO     | [REQ-151444-0002] Truncated: False
+2026-03-02 15:14:53 | INFO     | [REQ-151444-0002] Summary: Query returned 1 rows with 1 columns: overdue_invoices_count | overdue_invoices_count range: 1508.00 - 1508.00
+2026-03-02 15:14:53 | INFO     | [REQ-151444-0002] Chart Suggestion: None - Single value result
+2026-03-02 15:14:53 | INFO     | ------------------------------------------------------------
+2026-03-02 15:14:53 | INFO     | [REQ-151444-0002] LLM PROMPT BUILDING
+2026-03-02 15:14:53 | INFO     | ------------------------------------------------------------
+2026-03-02 15:14:53 | INFO     | [REQ-151444-0002] Prompt Type: semantic_analysis
+2026-03-02 15:14:53 | DEBUG    | [REQ-151444-0002] Full Prompt (11447 chars):
+2026-03-02 15:14:53 | DEBUG    | [REQ-151444-0002] Prompt Start:
+SYSTEM:
+You are an AI CFO assistant for financial analytics and invoicing. YOU MUST RESPOND WITH VALID JSON ONLY. NO MARKDOWN. NO PLAIN TEXT. ONLY JSON.
+
+**CRITICAL OUTPUT RULE - READ FIRST:**
+You MUST NEVER return raw JSON data, database output, or unformatted lists to the user.
+ALWAYS format your response as natural language with proper tables, summaries, and insights.
+
+**CRITICAL: The "response" field MUST be SHORT (2-4 sentences maximum) and conversational.**
+**DO NOT include lists of data, account numbers, or customer details in the "response" field.**
+**ALL detailed data MUST go in the "tables" array with proper headers and rows.**
+
+You are an expert in financial analytics ,reporting and invoicing. for AICFO - financial analytics, reporting, and invoicing.
+
+=== RESPONSE PRESENTATION RULES (MANDATORY) ===
+1. **Natural Language First**: The "response" field MUST contain SHORT conversational text (2-4 sentences MAXIMUM), NOT raw data
+2. **NO DATA IN RESPONSE FIELD**: Do NOT include 
+2026-03-02 15:14:53 | DEBUG    | [REQ-151444-0002] ... [middle truncated] ...
+2026-03-02 15:14:53 | DEBUG    | [REQ-151444-0002] Prompt End:
+=
+```sql
+SELECT COUNT(*) AS overdue_invoices_count
+FROM accounts
+WHERE status = 'overdue'
+```
+
+=== QUERY RESULTS ===
+Columns: ["overdue_invoices_count"]
+Total Rows: 1
+
+
+Data Summary: Query returned 1 rows with 1 columns: overdue_invoices_count | overdue_invoices_count range: 1508.00 - 1508.00
+
+=== DATA ===
+[
+  {
+    "overdue_invoices_count": 1508
+  }
+]
+
+Analyze the above query results and provide your response in the specified RESPONSE FORMAT based on the RESPONSE TYPE DETERMINATION rules above.
+2026-03-02 15:14:54 | INFO     | ------------------------------------------------------------
+2026-03-02 15:14:54 | INFO     | [REQ-151444-0002] LLM API REQUEST
+2026-03-02 15:14:54 | INFO     | ------------------------------------------------------------
+2026-03-02 15:14:54 | INFO     | [REQ-151444-0002] Model: gpt-4o-mini
+2026-03-02 15:14:54 | INFO     | [REQ-151444-0002] Temperature: 0.7
+2026-03-02 15:14:54 | INFO     | [REQ-151444-0002] Max Tokens: 2000
+2026-03-02 15:14:54 | INFO     | [REQ-151444-0002] Sending request to OpenAI...
+2026-03-02 15:14:59 | INFO     | ------------------------------------------------------------
+2026-03-02 15:14:59 | INFO     | [REQ-151444-0002] LLM RESPONSE RECEIVED
+2026-03-02 15:14:59 | INFO     | ------------------------------------------------------------
+2026-03-02 15:14:59 | INFO     | [REQ-151444-0002] Tokens Used: 3138
+2026-03-02 15:14:59 | INFO     | [REQ-151444-0002] Response Length: 499 chars
+2026-03-02 15:14:59 | DEBUG    | [REQ-151444-0002] Raw Response:
+2026-03-02 15:14:59 | DEBUG    | [REQ-151444-0002] {
+  "response": "There are a total of 1,508 overdue invoices currently outstanding. This indicates a significant amount of receivables that need attention to improve cash flow.",
+  "kpi_cards": [
+    {
+      "label": "Overdue Invoices Count",
+      "value": "1508"
+    }
+  ],
+  "summary_points": [
+    "1,508 overdue invoices identified.",
+    "This may impact cash flow and require immediate follow-up.",
+    "A strategy to address overdue invoices could enhance collections."
+  ],
+  "tables": []
+}
+2026-03-02 15:14:59 | INFO     | ------------------------------------------------------------
+2026-03-02 15:14:59 | INFO     | [REQ-151444-0002] RESPONSE PARSING
+2026-03-02 15:14:59 | INFO     | ------------------------------------------------------------
+2026-03-02 15:14:59 | INFO     | [REQ-151444-0002] Response Text: There are a total of 1,508 overdue invoices currently outstanding. This indicates a significant amount of receivables that need attention to improve cash flow.
+2026-03-02 15:14:59 | INFO     | [REQ-151444-0002] Charts Count: 0
+2026-03-02 15:14:59 | INFO     | [REQ-151444-0002] Tables Count: 0
+2026-03-02 15:14:59 | INFO     | [REQ-151444-0002] Summary Points: 3
+2026-03-02 15:14:59 | INFO     | ================================================================================
+2026-03-02 15:14:59 | INFO     | [REQ-151444-0002] QUERY COMPLETED SUCCESSFULLY
+2026-03-02 15:14:59 | INFO     | [REQ-151444-0002] Total Duration: 14828.07ms
+2026-03-02 15:14:59 | INFO     | ================================================================================
+2026-03-02 15:14:59 | INFO     | 
+2026-03-02 15:16:48 | INFO     | ================================================================================
+2026-03-02 15:16:48 | INFO     | [REQ-151648-0003] NEW QUERY RECEIVED
+2026-03-02 15:16:48 | INFO     | ================================================================================
+2026-03-02 15:16:48 | INFO     | [REQ-151648-0003] USER QUESTION: how many invoices are pending and of which companies
+2026-03-02 15:16:48 | INFO     | [REQ-151648-0003] TIMESTAMP: 2026-03-02T15:16:48.313083
+2026-03-02 15:16:52 | INFO     | ------------------------------------------------------------
+2026-03-02 15:16:52 | INFO     | [REQ-151648-0003] QUERY REFINEMENT
+2026-03-02 15:16:52 | INFO     | ------------------------------------------------------------
+2026-03-02 15:16:52 | INFO     | [REQ-151648-0003] Original Query: how many invoices are pending and of which companies
+2026-03-02 15:16:52 | INFO     | [REQ-151648-0003] Conversation History (5 messages):
+2026-03-02 15:16:52 | INFO     | [REQ-151648-0003]   1. Show me the companies having highest profit
+2026-03-02 15:16:52 | INFO     | [REQ-151648-0003]   2. Show me the companies having highest profit
+2026-03-02 15:16:52 | INFO     | [REQ-151648-0003]   3. Which company has the highest due payment?
+2026-03-02 15:16:52 | INFO     | [REQ-151648-0003]   4. having partial payment.
+2026-03-02 15:16:52 | INFO     | [REQ-151648-0003]   5. How many invoices are overdue
+2026-03-02 15:16:52 | INFO     | [REQ-151648-0003] Refined Query: How many invoices are pending and of which companies have the highest due payment?
+2026-03-02 15:16:52 | INFO     | [REQ-151648-0003] Query was modified by refinement
+2026-03-02 15:16:52 | INFO     | ------------------------------------------------------------
+2026-03-02 15:16:52 | INFO     | [REQ-151648-0003] VANNA SQL GENERATION
+2026-03-02 15:16:52 | INFO     | ------------------------------------------------------------
+2026-03-02 15:16:52 | INFO     | [REQ-151648-0003] Generating SQL for: How many invoices are pending and of which companies have the highest due payment?
+2026-03-02 15:16:58 | INFO     | [REQ-151648-0003] SQL Generation: SUCCESS
+2026-03-02 15:16:58 | INFO     | [REQ-151648-0003] Generated SQL:
+2026-03-02 15:16:58 | INFO     | [REQ-151648-0003]   SELECT 
+2026-03-02 15:16:58 | INFO     | [REQ-151648-0003]       c.company_name, 
+2026-03-02 15:16:58 | INFO     | [REQ-151648-0003]       COUNT(a.invoice_id) AS pending_invoices, 
+2026-03-02 15:16:58 | INFO     | [REQ-151648-0003]       SUM(a.balance_amount) AS total_due_payment
+2026-03-02 15:16:58 | INFO     | [REQ-151648-0003]   FROM 
+2026-03-02 15:16:58 | INFO     | [REQ-151648-0003]       accounts a
+2026-03-02 15:16:58 | INFO     | [REQ-151648-0003]   JOIN 
+2026-03-02 15:16:58 | INFO     | [REQ-151648-0003]       company c ON a.invoice_to_company = c.id
+2026-03-02 15:16:58 | INFO     | [REQ-151648-0003]   WHERE 
+2026-03-02 15:16:58 | INFO     | [REQ-151648-0003]       a.status = 'unpaid' OR a.status = 'overdue'
+2026-03-02 15:16:58 | INFO     | [REQ-151648-0003]   GROUP BY 
+2026-03-02 15:16:58 | INFO     | [REQ-151648-0003]       c.company_name
+2026-03-02 15:16:58 | INFO     | [REQ-151648-0003]   ORDER BY 
+2026-03-02 15:16:58 | INFO     | [REQ-151648-0003]       total_due_payment DESC;
+2026-03-02 15:16:58 | INFO     | ------------------------------------------------------------
+2026-03-02 15:16:58 | INFO     | [REQ-151648-0003] SQL VALIDATION
+2026-03-02 15:16:58 | INFO     | ------------------------------------------------------------
+2026-03-02 15:16:58 | INFO     | [REQ-151648-0003] Validation: PASSED
+2026-03-02 15:16:58 | INFO     | [REQ-151648-0003] Sanitized SQL:
+2026-03-02 15:16:58 | INFO     | [REQ-151648-0003]   SELECT 
+2026-03-02 15:16:58 | INFO     | [REQ-151648-0003]       c.company_name, 
+2026-03-02 15:16:58 | INFO     | [REQ-151648-0003]       COUNT(a.invoice_id) AS pending_invoices, 
+2026-03-02 15:16:58 | INFO     | [REQ-151648-0003]       SUM(a.balance_amount) AS total_due_payment
+2026-03-02 15:16:58 | INFO     | [REQ-151648-0003]   FROM 
+2026-03-02 15:16:58 | INFO     | [REQ-151648-0003]       accounts a
+2026-03-02 15:16:58 | INFO     | [REQ-151648-0003]   JOIN 
+2026-03-02 15:16:58 | INFO     | [REQ-151648-0003]       company c ON a.invoice_to_company = c.id
+2026-03-02 15:16:58 | INFO     | [REQ-151648-0003]   WHERE 
+2026-03-02 15:16:58 | INFO     | [REQ-151648-0003]       a.status = 'unpaid' OR a.status = 'overdue'
+2026-03-02 15:16:58 | INFO     | [REQ-151648-0003]   GROUP BY 
+2026-03-02 15:16:58 | INFO     | [REQ-151648-0003]       c.company_name
+2026-03-02 15:16:58 | INFO     | [REQ-151648-0003]   ORDER BY 
+2026-03-02 15:16:58 | INFO     | [REQ-151648-0003]       total_due_payment DESC
+2026-03-02 15:16:58 | INFO     | ------------------------------------------------------------
+2026-03-02 15:16:58 | INFO     | [REQ-151648-0003] SQL EXECUTION
+2026-03-02 15:16:58 | INFO     | ------------------------------------------------------------
+2026-03-02 15:16:58 | INFO     | [REQ-151648-0003] Executing SQL against database...
+2026-03-02 15:16:59 | INFO     | [REQ-151648-0003] Execution: SUCCESS
+2026-03-02 15:16:59 | INFO     | [REQ-151648-0003] Rows Returned: 100
+2026-03-02 15:16:59 | INFO     | [REQ-151648-0003] Columns: ['company_name', 'pending_invoices', 'total_due_payment']
+2026-03-02 15:16:59 | DEBUG    | [REQ-151648-0003] Sample Data (first 3 rows):
+2026-03-02 15:16:59 | DEBUG    | [REQ-151648-0003]   Row 1: {'company_name': 'SwiftRoute Transport', 'pending_invoices': 21, 'total_due_payment': 2789985.75}
+2026-03-02 15:16:59 | DEBUG    | [REQ-151648-0003]   Row 2: {'company_name': 'PrimeLedger Financial', 'pending_invoices': 22, 'total_due_payment': 2662523.28}
+2026-03-02 15:16:59 | DEBUG    | [REQ-151648-0003]   Row 3: {'company_name': 'Precision Steel Ltd', 'pending_invoices': 27, 'total_due_payment': 2660789.33}
+2026-03-02 15:16:59 | INFO     | ------------------------------------------------------------
+2026-03-02 15:16:59 | INFO     | [REQ-151648-0003] RESULT FORMATTING
+2026-03-02 15:16:59 | INFO     | ------------------------------------------------------------
+2026-03-02 15:16:59 | INFO     | [REQ-151648-0003] Data Source: unknown
+2026-03-02 15:16:59 | INFO     | [REQ-151648-0003] Row Count: 100
+2026-03-02 15:16:59 | INFO     | [REQ-151648-0003] Truncated: False
+2026-03-02 15:16:59 | INFO     | [REQ-151648-0003] Summary: Query returned 100 rows with 3 columns: company_name, pending_invoices, total_due_payment | pending_invoices range: 7.00 - 27.00 | total_due_payment range: 642517.60 - 2789985.75
+2026-03-02 15:16:59 | INFO     | [REQ-151648-0003] Chart Suggestion: table - Complex data structure
+2026-03-02 15:16:59 | INFO     | ------------------------------------------------------------
+2026-03-02 15:16:59 | INFO     | [REQ-151648-0003] LLM PROMPT BUILDING
+2026-03-02 15:16:59 | INFO     | ------------------------------------------------------------
+2026-03-02 15:16:59 | INFO     | [REQ-151648-0003] Prompt Type: semantic_analysis
+2026-03-02 15:16:59 | DEBUG    | [REQ-151648-0003] Full Prompt (17756 chars):
+2026-03-02 15:16:59 | DEBUG    | [REQ-151648-0003] Prompt Start:
+SYSTEM:
+You are an AI CFO assistant for financial analytics and invoicing. YOU MUST RESPOND WITH VALID JSON ONLY. NO MARKDOWN. NO PLAIN TEXT. ONLY JSON.
+
+**CRITICAL OUTPUT RULE - READ FIRST:**
+You MUST NEVER return raw JSON data, database output, or unformatted lists to the user.
+ALWAYS format your response as natural language with proper tables, summaries, and insights.
+
+**CRITICAL: The "response" field MUST be SHORT (2-4 sentences maximum) and conversational.**
+**DO NOT include lists of data, account numbers, or customer details in the "response" field.**
+**ALL detailed data MUST go in the "tables" array with proper headers and rows.**
+
+You are an expert in financial analytics ,reporting and invoicing. for AICFO - financial analytics, reporting, and invoicing.
+
+=== RESPONSE PRESENTATION RULES (MANDATORY) ===
+1. **Natural Language First**: The "response" field MUST contain SHORT conversational text (2-4 sentences MAXIMUM), NOT raw data
+2. **NO DATA IN RESPONSE FIELD**: Do NOT include 
+2026-03-02 15:16:59 | DEBUG    | [REQ-151648-0003] ... [middle truncated] ...
+2026-03-02 15:16:59 | DEBUG    | [REQ-151648-0003] Prompt End:
+  },
+  {
+    "company_name": "QuantumByte Labs",
+    "pending_invoices": 12,
+    "total_due_payment": 1572720.81
+  },
+  {
+    "company_name": "WellSpring Health Group",
+    "pending_invoices": 12,
+    "total_due_payment": 1566149.36
+  },
+  {
+    "company_name": "HydroFlow Utilities",
+    "pending_invoices": 13,
+    "total_due_payment": 1546297.69
+  }
+]
+
+Analyze the above query results and provide your response in the specified RESPONSE FORMAT based on the RESPONSE TYPE DETERMINATION rules above.
+2026-03-02 15:16:59 | INFO     | ------------------------------------------------------------
+2026-03-02 15:16:59 | INFO     | [REQ-151648-0003] LLM API REQUEST
+2026-03-02 15:16:59 | INFO     | ------------------------------------------------------------
+2026-03-02 15:16:59 | INFO     | [REQ-151648-0003] Model: gpt-4o-mini
+2026-03-02 15:16:59 | INFO     | [REQ-151648-0003] Temperature: 0.7
+2026-03-02 15:16:59 | INFO     | [REQ-151648-0003] Max Tokens: 2000
+2026-03-02 15:16:59 | INFO     | [REQ-151648-0003] Sending request to OpenAI...
+2026-03-02 15:17:10 | INFO     | ------------------------------------------------------------
+2026-03-02 15:17:10 | INFO     | [REQ-151648-0003] LLM RESPONSE RECEIVED
+2026-03-02 15:17:10 | INFO     | ------------------------------------------------------------
+2026-03-02 15:17:10 | INFO     | [REQ-151648-0003] Tokens Used: 5288
+2026-03-02 15:17:10 | INFO     | [REQ-151648-0003] Response Length: 1150 chars
+2026-03-02 15:17:10 | DEBUG    | [REQ-151648-0003] Raw Response:
+2026-03-02 15:17:10 | DEBUG    | [REQ-151648-0003] {
+  "response": "I found 50 companies with pending invoices, totaling a significant amount due. The company with the highest number of pending invoices is Precision Steel Ltd, with 27 invoices and a total due payment of â‚¹2660789.33.",
+  "tables": [{
+    "title": "Pending Invoices by Company",
+    "headers": ["Company Name", "Pending Invoices", "Total Due Payment"],
+    "rows": [
+      ["SwiftRoute Transport", 21, 2789985.75],
+      ["PrimeLedger Financial", 22, 2662523.28],
+      ["Precision Steel Ltd", 27, 2660789.33],
+      ["SkyJet Aerospace", 18, 2588927.06],
+      ["UrbanAuto Works", 19, 2511659.59],
+      ["GreenField Agriculture", 18, 2366330.83],
+      ["CrudeCore Exploration", 15, 2283019.48],
+      ["IronWorks Manufacturing", 23, 2221875.41],
+      ["QuickCart Digital", 17, 2195245.09],
+      ["GrandVista Resorts", 18, 2191037.71]
+    ]
+  }],
+  "summary_points": [
+    "Total of 50 companies have pending invoices.",
+    "The highest number of pending invoices is 27 from Precision Steel Ltd.",
+    "Total due payments across these companies represent a significant cash flow concern."
+  ],
+  "charts": [],
+  "kpi_cards": []
+}
+2026-03-02 15:17:10 | INFO     | ------------------------------------------------------------
+2026-03-02 15:17:10 | INFO     | [REQ-151648-0003] RESPONSE PARSING
+2026-03-02 15:17:10 | INFO     | ------------------------------------------------------------
+2026-03-02 15:17:10 | INFO     | [REQ-151648-0003] Response Text: I found 50 companies with pending invoices, totaling a significant amount due. The company with the highest number of pending invoices is Precision Steel Ltd, with 27 invoices and a total due payment of â‚¹2660789.33.
+2026-03-02 15:17:10 | INFO     | [REQ-151648-0003] Charts Count: 0
+2026-03-02 15:17:10 | INFO     | [REQ-151648-0003] Tables Count: 1
+2026-03-02 15:17:10 | INFO     | [REQ-151648-0003] Summary Points: 3
+2026-03-02 15:17:10 | DEBUG    | [REQ-151648-0003] Table 1: title=Pending Invoices by Company, rows=10
+2026-03-02 15:17:10 | INFO     | ================================================================================
+2026-03-02 15:17:10 | INFO     | [REQ-151648-0003] QUERY COMPLETED SUCCESSFULLY
+2026-03-02 15:17:10 | INFO     | [REQ-151648-0003] Total Duration: 22271.05ms
+2026-03-02 15:17:10 | INFO     | ================================================================================
+2026-03-02 15:17:10 | INFO     | 
+2026-03-02 15:20:08 | INFO     | ================================================================================
+2026-03-02 15:20:08 | INFO     | [REQ-152008-0001] NEW QUERY RECEIVED
+2026-03-02 15:20:08 | INFO     | ================================================================================
+2026-03-02 15:20:08 | INFO     | [REQ-152008-0001] USER QUESTION: Show me the company which has highest amount pending to pay
+2026-03-02 15:20:08 | INFO     | [REQ-152008-0001] TIMESTAMP: 2026-03-02T15:20:08.215982
+2026-03-02 15:20:09 | INFO     | ------------------------------------------------------------
+2026-03-02 15:20:09 | INFO     | [REQ-152008-0001] QUERY REFINEMENT
+2026-03-02 15:20:09 | INFO     | ------------------------------------------------------------
+2026-03-02 15:20:09 | INFO     | [REQ-152008-0001] Original Query: Show me the company which has highest amount pending to pay
+2026-03-02 15:20:09 | INFO     | [REQ-152008-0001] Conversation History (0 messages):
+2026-03-02 15:20:09 | INFO     | [REQ-152008-0001] Refined Query: Show me the company which has highest amount pending to pay
+2026-03-02 15:20:09 | INFO     | [REQ-152008-0001] Query unchanged (no context dependency)
+2026-03-02 15:20:09 | INFO     | ------------------------------------------------------------
+2026-03-02 15:20:09 | INFO     | [REQ-152008-0001] VANNA SQL GENERATION
+2026-03-02 15:20:09 | INFO     | ------------------------------------------------------------
+2026-03-02 15:20:09 | INFO     | [REQ-152008-0001] Generating SQL for: Show me the company which has highest amount pending to pay
+2026-03-02 15:20:13 | INFO     | [REQ-152008-0001] SQL Generation: SUCCESS
+2026-03-02 15:20:13 | INFO     | [REQ-152008-0001] Generated SQL:
+2026-03-02 15:20:13 | INFO     | [REQ-152008-0001]   SELECT invoice_to_company, SUM(balance_amount) AS total_pending
+2026-03-02 15:20:13 | INFO     | [REQ-152008-0001]   FROM accounts
+2026-03-02 15:20:13 | INFO     | [REQ-152008-0001]   GROUP BY invoice_to_company
+2026-03-02 15:20:13 | INFO     | [REQ-152008-0001]   ORDER BY total_pending DESC
+2026-03-02 15:20:13 | INFO     | ------------------------------------------------------------
+2026-03-02 15:20:13 | INFO     | [REQ-152008-0001] SQL VALIDATION
+2026-03-02 15:20:13 | INFO     | ------------------------------------------------------------
+2026-03-02 15:20:13 | INFO     | [REQ-152008-0001] Validation: PASSED
+2026-03-02 15:20:13 | INFO     | [REQ-152008-0001] Sanitized SQL:
+2026-03-02 15:20:13 | INFO     | [REQ-152008-0001]   SELECT invoice_to_company, SUM(balance_amount) AS total_pending
+2026-03-02 15:20:13 | INFO     | [REQ-152008-0001]   FROM accounts
+2026-03-02 15:20:13 | INFO     | [REQ-152008-0001]   GROUP BY invoice_to_company
+2026-03-02 15:20:13 | INFO     | [REQ-152008-0001]   ORDER BY total_pending DESC
+2026-03-02 15:20:13 | INFO     | ------------------------------------------------------------
+2026-03-02 15:20:13 | INFO     | [REQ-152008-0001] SQL EXECUTION
+2026-03-02 15:20:13 | INFO     | ------------------------------------------------------------
+2026-03-02 15:20:13 | INFO     | [REQ-152008-0001] Executing SQL against database...
+2026-03-02 15:20:14 | INFO     | [REQ-152008-0001] Execution: SUCCESS
+2026-03-02 15:20:14 | INFO     | [REQ-152008-0001] Rows Returned: 100
+2026-03-02 15:20:14 | INFO     | [REQ-152008-0001] Columns: ['invoice_to_company', 'total_pending']
+2026-03-02 15:20:14 | DEBUG    | [REQ-152008-0001] Sample Data (first 3 rows):
+2026-03-02 15:20:14 | DEBUG    | [REQ-152008-0001]   Row 1: {'invoice_to_company': 46, 'total_pending': 2789985.75}
+2026-03-02 15:20:14 | DEBUG    | [REQ-152008-0001]   Row 2: {'invoice_to_company': 11, 'total_pending': 2662523.28}
+2026-03-02 15:20:14 | DEBUG    | [REQ-152008-0001]   Row 3: {'invoice_to_company': 31, 'total_pending': 2660789.33}
+2026-03-02 15:20:14 | INFO     | ------------------------------------------------------------
+2026-03-02 15:20:14 | INFO     | [REQ-152008-0001] RESULT FORMATTING
+2026-03-02 15:20:14 | INFO     | ------------------------------------------------------------
+2026-03-02 15:20:14 | INFO     | [REQ-152008-0001] Data Source: unknown
+2026-03-02 15:20:14 | INFO     | [REQ-152008-0001] Row Count: 100
+2026-03-02 15:20:14 | INFO     | [REQ-152008-0001] Truncated: False
+2026-03-02 15:20:14 | INFO     | [REQ-152008-0001] Summary: Query returned 100 rows with 2 columns: invoice_to_company, total_pending | invoice_to_company range: 1.00 - 100.00 | total_pending range: 642517.60 - 2789985.75
+2026-03-02 15:20:14 | INFO     | [REQ-152008-0001] Chart Suggestion: table - Complex data structure
+2026-03-02 15:20:14 | INFO     | ------------------------------------------------------------
+2026-03-02 15:20:14 | INFO     | [REQ-152008-0001] LLM PROMPT BUILDING
+2026-03-02 15:20:14 | INFO     | ------------------------------------------------------------
+2026-03-02 15:20:14 | INFO     | [REQ-152008-0001] Prompt Type: semantic_analysis
+2026-03-02 15:20:14 | DEBUG    | [REQ-152008-0001] Full Prompt (15361 chars):
+2026-03-02 15:20:14 | DEBUG    | [REQ-152008-0001] Prompt Start:
+SYSTEM:
+You are an AI CFO assistant for financial analytics and invoicing. YOU MUST RESPOND WITH VALID JSON ONLY. NO MARKDOWN. NO PLAIN TEXT. ONLY JSON.
+
+**CRITICAL OUTPUT RULE - READ FIRST:**
+You MUST NEVER return raw JSON data, database output, or unformatted lists to the user.
+ALWAYS format your response as natural language with proper tables, summaries, and insights.
+
+**CRITICAL: The "response" field MUST be SHORT (2-4 sentences maximum) and conversational.**
+**DO NOT include lists of data, account numbers, or customer details in the "response" field.**
+**ALL detailed data MUST go in the "tables" array with proper headers and rows.**
+
+You are an expert in financial analytics ,reporting and invoicing. for AICFO - financial analytics, reporting, and invoicing.
+
+=== RESPONSE PRESENTATION RULES (MANDATORY) ===
+1. **Natural Language First**: The "response" field MUST contain SHORT conversational text (2-4 sentences MAXIMUM), NOT raw data
+2. **NO DATA IN RESPONSE FIELD**: Do NOT include 
+2026-03-02 15:20:14 | DEBUG    | [REQ-152008-0001] ... [middle truncated] ...
+2026-03-02 15:20:14 | DEBUG    | [REQ-152008-0001] Prompt End:
+invoice_to_company": 80.0,
+    "total_pending": 1575703.73
+  },
+  {
+    "invoice_to_company": 85.0,
+    "total_pending": 1572732.56
+  },
+  {
+    "invoice_to_company": 3.0,
+    "total_pending": 1572720.81
+  },
+  {
+    "invoice_to_company": 8.0,
+    "total_pending": 1566149.36
+  },
+  {
+    "invoice_to_company": 56.0,
+    "total_pending": 1546297.69
+  }
+]
+
+Analyze the above query results and provide your response in the specified RESPONSE FORMAT based on the RESPONSE TYPE DETERMINATION rules above.
+2026-03-02 15:20:14 | INFO     | ------------------------------------------------------------
+2026-03-02 15:20:14 | INFO     | [REQ-152008-0001] LLM API REQUEST
+2026-03-02 15:20:14 | INFO     | ------------------------------------------------------------
+2026-03-02 15:20:14 | INFO     | [REQ-152008-0001] Model: gpt-4o-mini
+2026-03-02 15:20:14 | INFO     | [REQ-152008-0001] Temperature: 0.7
+2026-03-02 15:20:14 | INFO     | [REQ-152008-0001] Max Tokens: 2000
+2026-03-02 15:20:14 | INFO     | [REQ-152008-0001] Sending request to OpenAI...
+2026-03-02 15:20:22 | INFO     | ------------------------------------------------------------
+2026-03-02 15:20:22 | INFO     | [REQ-152008-0001] LLM RESPONSE RECEIVED
+2026-03-02 15:20:22 | INFO     | ------------------------------------------------------------
+2026-03-02 15:20:22 | INFO     | [REQ-152008-0001] Tokens Used: 4741
+2026-03-02 15:20:22 | INFO     | [REQ-152008-0001] Response Length: 957 chars
+2026-03-02 15:20:22 | DEBUG    | [REQ-152008-0001] Raw Response:
+2026-03-02 15:20:22 | DEBUG    | [REQ-152008-0001] {
+  "response": "The company with the highest amount pending to pay is company 46, with a total outstanding balance of â‚¹27,899,985.75. This significant amount indicates a high exposure that may need to be addressed promptly.",
+  "tables": [{
+    "title": "Top Pending Amounts by Company",
+    "headers": ["Company ID", "Total Pending Amount"],
+    "rows": [
+      [46.0, 2789985.75],
+      [11.0, 2662523.28],
+      [31.0, 2660789.33],
+      [90.0, 2588927.06],
+      [36.0, 2511659.59],
+      [86.0, 2366330.83],
+      [59.0, 2283019.48],
+      [29.0, 2221875.41],
+      [26.0, 2195245.09],
+      [78.0, 2191037.71]
+    ]
+  }],
+  "summary_points": [
+    "Company ID 46 has the highest pending amount at â‚¹27,899,985.75.",
+    "The second highest pending amount is with company ID 11 at â‚¹26,625,523.28.",
+    "The top 10 companies show significant outstanding balances, indicating potential cash flow concerns."
+  ],
+  "charts": [],
+  "kpi_cards": []
+}
+2026-03-02 15:20:22 | INFO     | ------------------------------------------------------------
+2026-03-02 15:20:22 | INFO     | [REQ-152008-0001] RESPONSE PARSING
+2026-03-02 15:20:22 | INFO     | ------------------------------------------------------------
+2026-03-02 15:20:22 | INFO     | [REQ-152008-0001] Response Text: The company with the highest amount pending to pay is company 46, with a total outstanding balance of â‚¹27,899,985.75. This significant amount indicates a high exposure that may need to be addressed promptly.
+2026-03-02 15:20:22 | INFO     | [REQ-152008-0001] Charts Count: 0
+2026-03-02 15:20:22 | INFO     | [REQ-152008-0001] Tables Count: 1
+2026-03-02 15:20:22 | INFO     | [REQ-152008-0001] Summary Points: 3
+2026-03-02 15:20:22 | DEBUG    | [REQ-152008-0001] Table 1: title=Top Pending Amounts by Company, rows=10
+2026-03-02 15:20:22 | INFO     | ================================================================================
+2026-03-02 15:20:22 | INFO     | [REQ-152008-0001] QUERY COMPLETED SUCCESSFULLY
+2026-03-02 15:20:22 | INFO     | [REQ-152008-0001] Total Duration: 14145.71ms
+2026-03-02 15:20:22 | INFO     | ================================================================================
+2026-03-02 15:20:22 | INFO     | 
+2026-03-02 15:21:13 | INFO     | ================================================================================
+2026-03-02 15:21:13 | INFO     | [REQ-152113-0002] NEW QUERY RECEIVED
+2026-03-02 15:21:13 | INFO     | ================================================================================
+2026-03-02 15:21:13 | INFO     | [REQ-152113-0002] USER QUESTION: Show me the company names which has highest amount pending to pay
+2026-03-02 15:21:13 | INFO     | [REQ-152113-0002] TIMESTAMP: 2026-03-02T15:21:13.766166
+2026-03-02 15:21:17 | INFO     | ------------------------------------------------------------
+2026-03-02 15:21:17 | INFO     | [REQ-152113-0002] QUERY REFINEMENT
+2026-03-02 15:21:17 | INFO     | ------------------------------------------------------------
+2026-03-02 15:21:17 | INFO     | [REQ-152113-0002] Original Query: Show me the company names which has highest amount pending to pay
+2026-03-02 15:21:17 | INFO     | [REQ-152113-0002] Conversation History (1 messages):
+2026-03-02 15:21:17 | INFO     | [REQ-152113-0002]   1. Show me the company which has highest amount pending to pay
+2026-03-02 15:21:17 | INFO     | [REQ-152113-0002] Refined Query: Show me the company names which have the highest amount pending to pay.
+2026-03-02 15:21:17 | INFO     | [REQ-152113-0002] Query was modified by refinement
+2026-03-02 15:21:17 | INFO     | ------------------------------------------------------------
+2026-03-02 15:21:17 | INFO     | [REQ-152113-0002] VANNA SQL GENERATION
+2026-03-02 15:21:17 | INFO     | ------------------------------------------------------------
+2026-03-02 15:21:17 | INFO     | [REQ-152113-0002] Generating SQL for: Show me the company names which have the highest amount pending to pay.
+2026-03-02 15:21:22 | INFO     | [REQ-152113-0002] SQL Generation: SUCCESS
+2026-03-02 15:21:22 | INFO     | [REQ-152113-0002] Generated SQL:
+2026-03-02 15:21:22 | INFO     | [REQ-152113-0002]   SELECT c.company_name, SUM(a.balance_amount) AS total_pending
+2026-03-02 15:21:22 | INFO     | [REQ-152113-0002]   FROM accounts a
+2026-03-02 15:21:22 | INFO     | [REQ-152113-0002]   JOIN company c ON a.invoice_to_company = c.id
+2026-03-02 15:21:22 | INFO     | [REQ-152113-0002]   WHERE a.status IN ('unpaid', 'overdue')
+2026-03-02 15:21:22 | INFO     | [REQ-152113-0002]   GROUP BY c.company_name
+2026-03-02 15:21:22 | INFO     | [REQ-152113-0002]   ORDER BY total_pending DESC
+2026-03-02 15:21:22 | INFO     | ------------------------------------------------------------
+2026-03-02 15:21:22 | INFO     | [REQ-152113-0002] SQL VALIDATION
+2026-03-02 15:21:22 | INFO     | ------------------------------------------------------------
+2026-03-02 15:21:22 | INFO     | [REQ-152113-0002] Validation: PASSED
+2026-03-02 15:21:22 | INFO     | [REQ-152113-0002] Sanitized SQL:
+2026-03-02 15:21:22 | INFO     | [REQ-152113-0002]   SELECT c.company_name, SUM(a.balance_amount) AS total_pending
+2026-03-02 15:21:22 | INFO     | [REQ-152113-0002]   FROM accounts a
+2026-03-02 15:21:22 | INFO     | [REQ-152113-0002]   JOIN company c ON a.invoice_to_company = c.id
+2026-03-02 15:21:22 | INFO     | [REQ-152113-0002]   WHERE a.status IN ('unpaid', 'overdue')
+2026-03-02 15:21:22 | INFO     | [REQ-152113-0002]   GROUP BY c.company_name
+2026-03-02 15:21:22 | INFO     | [REQ-152113-0002]   ORDER BY total_pending DESC
+2026-03-02 15:21:22 | INFO     | ------------------------------------------------------------
+2026-03-02 15:21:22 | INFO     | [REQ-152113-0002] SQL EXECUTION
+2026-03-02 15:21:22 | INFO     | ------------------------------------------------------------
+2026-03-02 15:21:22 | INFO     | [REQ-152113-0002] Executing SQL against database...
+2026-03-02 15:21:23 | INFO     | [REQ-152113-0002] Execution: SUCCESS
+2026-03-02 15:21:23 | INFO     | [REQ-152113-0002] Rows Returned: 100
+2026-03-02 15:21:23 | INFO     | [REQ-152113-0002] Columns: ['company_name', 'total_pending']
+2026-03-02 15:21:23 | DEBUG    | [REQ-152113-0002] Sample Data (first 3 rows):
+2026-03-02 15:21:23 | DEBUG    | [REQ-152113-0002]   Row 1: {'company_name': 'SwiftRoute Transport', 'total_pending': 2789985.75}
+2026-03-02 15:21:23 | DEBUG    | [REQ-152113-0002]   Row 2: {'company_name': 'PrimeLedger Financial', 'total_pending': 2662523.28}
+2026-03-02 15:21:23 | DEBUG    | [REQ-152113-0002]   Row 3: {'company_name': 'Precision Steel Ltd', 'total_pending': 2660789.33}
+2026-03-02 15:21:23 | INFO     | ------------------------------------------------------------
+2026-03-02 15:21:23 | INFO     | [REQ-152113-0002] RESULT FORMATTING
+2026-03-02 15:21:23 | INFO     | ------------------------------------------------------------
+2026-03-02 15:21:23 | INFO     | [REQ-152113-0002] Data Source: unknown
+2026-03-02 15:21:23 | INFO     | [REQ-152113-0002] Row Count: 100
+2026-03-02 15:21:23 | INFO     | [REQ-152113-0002] Truncated: False
+2026-03-02 15:21:23 | INFO     | [REQ-152113-0002] Summary: Query returned 100 rows with 2 columns: company_name, total_pending | total_pending range: 642517.60 - 2789985.75
+2026-03-02 15:21:23 | INFO     | [REQ-152113-0002] Chart Suggestion: table - Complex data structure
+2026-03-02 15:21:23 | INFO     | ------------------------------------------------------------
+2026-03-02 15:21:23 | INFO     | [REQ-152113-0002] LLM PROMPT BUILDING
+2026-03-02 15:21:23 | INFO     | ------------------------------------------------------------
+2026-03-02 15:21:23 | INFO     | [REQ-152113-0002] Prompt Type: semantic_analysis
+2026-03-02 15:21:23 | DEBUG    | [REQ-152113-0002] Full Prompt (15981 chars):
+2026-03-02 15:21:23 | DEBUG    | [REQ-152113-0002] Prompt Start:
+SYSTEM:
+You are an AI CFO assistant for financial analytics and invoicing. YOU MUST RESPOND WITH VALID JSON ONLY. NO MARKDOWN. NO PLAIN TEXT. ONLY JSON.
+
+**CRITICAL OUTPUT RULE - READ FIRST:**
+You MUST NEVER return raw JSON data, database output, or unformatted lists to the user.
+ALWAYS format your response as natural language with proper tables, summaries, and insights.
+
+**CRITICAL: The "response" field MUST be SHORT (2-4 sentences maximum) and conversational.**
+**DO NOT include lists of data, account numbers, or customer details in the "response" field.**
+**ALL detailed data MUST go in the "tables" array with proper headers and rows.**
+
+You are an expert in financial analytics ,reporting and invoicing. for AICFO - financial analytics, reporting, and invoicing.
+
+=== RESPONSE PRESENTATION RULES (MANDATORY) ===
+1. **Natural Language First**: The "response" field MUST contain SHORT conversational text (2-4 sentences MAXIMUM), NOT raw data
+2. **NO DATA IN RESPONSE FIELD**: Do NOT include 
+2026-03-02 15:21:23 | DEBUG    | [REQ-152113-0002] ... [middle truncated] ...
+2026-03-02 15:21:23 | DEBUG    | [REQ-152113-0002] Prompt End:
+g": 1575703.73
+  },
+  {
+    "company_name": "AgriGrowth Farms",
+    "total_pending": 1572732.56
+  },
+  {
+    "company_name": "QuantumByte Labs",
+    "total_pending": 1572720.81
+  },
+  {
+    "company_name": "WellSpring Health Group",
+    "total_pending": 1566149.36
+  },
+  {
+    "company_name": "HydroFlow Utilities",
+    "total_pending": 1546297.69
+  }
+]
+
+Analyze the above query results and provide your response in the specified RESPONSE FORMAT based on the RESPONSE TYPE DETERMINATION rules above.
+2026-03-02 15:21:23 | INFO     | ------------------------------------------------------------
+2026-03-02 15:21:23 | INFO     | [REQ-152113-0002] LLM API REQUEST
+2026-03-02 15:21:23 | INFO     | ------------------------------------------------------------
+2026-03-02 15:21:23 | INFO     | [REQ-152113-0002] Model: gpt-4o-mini
+2026-03-02 15:21:23 | INFO     | [REQ-152113-0002] Temperature: 0.7
+2026-03-02 15:21:23 | INFO     | [REQ-152113-0002] Max Tokens: 2000
+2026-03-02 15:21:23 | INFO     | [REQ-152113-0002] Sending request to OpenAI...
+2026-03-02 15:21:29 | INFO     | ------------------------------------------------------------
+2026-03-02 15:21:29 | INFO     | [REQ-152113-0002] LLM RESPONSE RECEIVED
+2026-03-02 15:21:29 | INFO     | ------------------------------------------------------------
+2026-03-02 15:21:29 | INFO     | [REQ-152113-0002] Tokens Used: 4645
+2026-03-02 15:21:29 | INFO     | [REQ-152113-0002] Response Length: 934 chars
+2026-03-02 15:21:29 | DEBUG    | [REQ-152113-0002] Raw Response:
+2026-03-02 15:21:29 | DEBUG    | [REQ-152113-0002] {
+  "response": "I found the companies with the highest pending payments, led by SwiftRoute Transport with a total of â‚¹278,9985.75. The top five companies have significant amounts outstanding, indicating potential cash flow concerns for these businesses.",
+  "tables": [{
+    "title": "Top Companies with Pending Payments",
+    "headers": ["Company Name", "Total Pending Amount"],
+    "rows": [
+      ["SwiftRoute Transport", 2789985.75],
+      ["PrimeLedger Financial", 2662523.28],
+      ["Precision Steel Ltd", 2660789.33],
+      ["SkyJet Aerospace", 2588927.06],
+      ["UrbanAuto Works", 2511659.59]
+    ]
+  }],
+  "summary_points": [
+    "SwiftRoute Transport has the highest pending amount at â‚¹278,9985.75.",
+    "The total pending for the top five companies exceeds â‚¹1.3 crore.",
+    "These outstanding amounts could impact the liquidity and operational stability of these firms."
+  ],
+  "charts": [],
+  "kpi_cards": []
+}
+2026-03-02 15:21:29 | INFO     | ------------------------------------------------------------
+2026-03-02 15:21:29 | INFO     | [REQ-152113-0002] RESPONSE PARSING
+2026-03-02 15:21:29 | INFO     | ------------------------------------------------------------
+2026-03-02 15:21:29 | INFO     | [REQ-152113-0002] Response Text: I found the companies with the highest pending payments, led by SwiftRoute Transport with a total of â‚¹278,9985.75. The top five companies have significant amounts outstanding, indicating potential cash flow concerns for these businesses.
+2026-03-02 15:21:29 | INFO     | [REQ-152113-0002] Charts Count: 0
+2026-03-02 15:21:29 | INFO     | [REQ-152113-0002] Tables Count: 1
+2026-03-02 15:21:29 | INFO     | [REQ-152113-0002] Summary Points: 3
+2026-03-02 15:21:29 | DEBUG    | [REQ-152113-0002] Table 1: title=Top Companies with Pending Payments, rows=5
+2026-03-02 15:21:29 | INFO     | ================================================================================
+2026-03-02 15:21:29 | INFO     | [REQ-152113-0002] QUERY COMPLETED SUCCESSFULLY
+2026-03-02 15:21:29 | INFO     | [REQ-152113-0002] Total Duration: 15835.75ms
+2026-03-02 15:21:29 | INFO     | ================================================================================
+2026-03-02 15:21:29 | INFO     | 
+2026-03-02 15:41:10 | INFO     | ================================================================================
+2026-03-02 15:41:10 | INFO     | [REQ-154110-0003] NEW QUERY RECEIVED
+2026-03-02 15:41:10 | INFO     | ================================================================================
+2026-03-02 15:41:10 | INFO     | [REQ-154110-0003] USER QUESTION: show me the last one week top 5 invoices
+2026-03-02 15:41:10 | INFO     | [REQ-154110-0003] TIMESTAMP: 2026-03-02T15:41:10.348150
+2026-03-02 15:41:11 | INFO     | ------------------------------------------------------------
+2026-03-02 15:41:11 | INFO     | [REQ-154110-0003] QUERY REFINEMENT
+2026-03-02 15:41:11 | INFO     | ------------------------------------------------------------
+2026-03-02 15:41:11 | INFO     | [REQ-154110-0003] Original Query: show me the last one week top 5 invoices
+2026-03-02 15:41:11 | INFO     | [REQ-154110-0003] Conversation History (0 messages):
+2026-03-02 15:41:11 | INFO     | [REQ-154110-0003] Refined Query: show me the last one week top 5 invoices
+2026-03-02 15:41:11 | INFO     | [REQ-154110-0003] Query unchanged (no context dependency)
+2026-03-02 15:41:11 | INFO     | ------------------------------------------------------------
+2026-03-02 15:41:11 | INFO     | [REQ-154110-0003] VANNA SQL GENERATION
+2026-03-02 15:41:11 | INFO     | ------------------------------------------------------------
+2026-03-02 15:41:11 | INFO     | [REQ-154110-0003] Generating SQL for: show me the last one week top 5 invoices
+2026-03-02 15:41:15 | INFO     | [REQ-154110-0003] SQL Generation: SUCCESS
+2026-03-02 15:41:15 | INFO     | [REQ-154110-0003] Generated SQL:
+2026-03-02 15:41:15 | INFO     | [REQ-154110-0003]   SELECT *
+2026-03-02 15:41:15 | INFO     | [REQ-154110-0003]   FROM accounts
+2026-03-02 15:41:15 | INFO     | [REQ-154110-0003]   WHERE invoice_date >= CURDATE() - INTERVAL 7 DAY
+2026-03-02 15:41:15 | INFO     | [REQ-154110-0003]   ORDER BY invoice_date DESC
+2026-03-02 15:41:15 | INFO     | ------------------------------------------------------------
+2026-03-02 15:41:15 | INFO     | [REQ-154110-0003] SQL VALIDATION
+2026-03-02 15:41:15 | INFO     | ------------------------------------------------------------
+2026-03-02 15:41:15 | INFO     | [REQ-154110-0003] Validation: PASSED
+2026-03-02 15:41:15 | INFO     | [REQ-154110-0003] Sanitized SQL:
+2026-03-02 15:41:15 | INFO     | [REQ-154110-0003]   SELECT *
+2026-03-02 15:41:15 | INFO     | [REQ-154110-0003]   FROM accounts
+2026-03-02 15:41:15 | INFO     | [REQ-154110-0003]   WHERE invoice_date >= CURDATE() - INTERVAL 7 DAY
+2026-03-02 15:41:15 | INFO     | [REQ-154110-0003]   ORDER BY invoice_date DESC
+2026-03-02 15:41:15 | INFO     | ------------------------------------------------------------
+2026-03-02 15:41:15 | INFO     | [REQ-154110-0003] SQL EXECUTION
+2026-03-02 15:41:15 | INFO     | ------------------------------------------------------------
+2026-03-02 15:41:15 | INFO     | [REQ-154110-0003] Executing SQL against database...
+2026-03-02 15:41:16 | INFO     | [REQ-154110-0003] Execution: SUCCESS
+2026-03-02 15:41:16 | INFO     | [REQ-154110-0003] Rows Returned: 0
+2026-03-02 15:41:16 | INFO     | [REQ-154110-0003] Columns: ['invoice_id', 'invoice_from_company', 'invoice_to_company', 'invoice_amount', 'paid_amount', 'balance_amount', 'currency', 'invoice_date', 'due_date', 'created_at', 'updated_at', 'status']
+2026-03-02 15:41:16 | INFO     | ------------------------------------------------------------
+2026-03-02 15:41:16 | INFO     | [REQ-154110-0003] RESULT FORMATTING
+2026-03-02 15:41:16 | INFO     | ------------------------------------------------------------
+2026-03-02 15:41:16 | INFO     | [REQ-154110-0003] Data Source: unknown
+2026-03-02 15:41:16 | INFO     | [REQ-154110-0003] Row Count: 0
+2026-03-02 15:41:16 | INFO     | [REQ-154110-0003] Truncated: False
+2026-03-02 15:41:16 | INFO     | [REQ-154110-0003] Summary: No data returned from query.
+2026-03-02 15:41:16 | INFO     | ------------------------------------------------------------
+2026-03-02 15:41:16 | INFO     | [REQ-154110-0003] LLM PROMPT BUILDING
+2026-03-02 15:41:16 | INFO     | ------------------------------------------------------------
+2026-03-02 15:41:16 | INFO     | [REQ-154110-0003] Prompt Type: semantic_analysis
+2026-03-02 15:41:16 | DEBUG    | [REQ-154110-0003] Full Prompt (11326 chars):
+2026-03-02 15:41:16 | DEBUG    | [REQ-154110-0003] Prompt Start:
+SYSTEM:
+You are an AI CFO assistant for financial analytics and invoicing. YOU MUST RESPOND WITH VALID JSON ONLY. NO MARKDOWN. NO PLAIN TEXT. ONLY JSON.
+
+**CRITICAL OUTPUT RULE - READ FIRST:**
+You MUST NEVER return raw JSON data, database output, or unformatted lists to the user.
+ALWAYS format your response as natural language with proper tables, summaries, and insights.
+
+**CRITICAL: The "response" field MUST be SHORT (2-4 sentences maximum) and conversational.**
+**DO NOT include lists of data, account numbers, or customer details in the "response" field.**
+**ALL detailed data MUST go in the "tables" array with proper headers and rows.**
+
+You are an expert in financial analytics ,reporting and invoicing. for AICFO - financial analytics, reporting, and invoicing.
+
+=== RESPONSE PRESENTATION RULES (MANDATORY) ===
+1. **Natural Language First**: The "response" field MUST contain SHORT conversational text (2-4 sentences MAXIMUM), NOT raw data
+2. **NO DATA IN RESPONSE FIELD**: Do NOT include 
+2026-03-02 15:41:16 | DEBUG    | [REQ-154110-0003] ... [middle truncated] ...
+2026-03-02 15:41:16 | DEBUG    | [REQ-154110-0003] Prompt End:
+...], "rows": [[...]] }](optional)
+   - "summary_points": [Key patterns]
+   - "kpi_cards": [] (optional) 
+
+=== SQL QUERY EXECUTED ===
+```sql
+SELECT *
+FROM accounts
+WHERE invoice_date >= CURDATE() - INTERVAL 7 DAY
+ORDER BY invoice_date DESC
+```
+
+=== QUERY RESULTS ===
+Columns: []
+Total Rows: 0
+
+
+Data Summary: No data returned from query.
+
+=== DATA ===
+[]
+
+Analyze the above query results and provide your response in the specified RESPONSE FORMAT based on the RESPONSE TYPE DETERMINATION rules above.
+2026-03-02 15:41:16 | INFO     | ------------------------------------------------------------
+2026-03-02 15:41:16 | INFO     | [REQ-154110-0003] LLM API REQUEST
+2026-03-02 15:41:16 | INFO     | ------------------------------------------------------------
+2026-03-02 15:41:16 | INFO     | [REQ-154110-0003] Model: gpt-4o-mini
+2026-03-02 15:41:16 | INFO     | [REQ-154110-0003] Temperature: 0.7
+2026-03-02 15:41:16 | INFO     | [REQ-154110-0003] Max Tokens: 2000
+2026-03-02 15:41:16 | INFO     | [REQ-154110-0003] Sending request to OpenAI...
+2026-03-02 15:41:21 | INFO     | ------------------------------------------------------------
+2026-03-02 15:41:21 | INFO     | [REQ-154110-0003] LLM RESPONSE RECEIVED
+2026-03-02 15:41:21 | INFO     | ------------------------------------------------------------
+2026-03-02 15:41:21 | INFO     | [REQ-154110-0003] Tokens Used: 3061
+2026-03-02 15:41:21 | INFO     | [REQ-154110-0003] Response Length: 337 chars
+2026-03-02 15:41:21 | DEBUG    | [REQ-154110-0003] Raw Response:
+2026-03-02 15:41:21 | DEBUG    | [REQ-154110-0003] {
+  "response": "I couldn't find any invoices from the last week. It appears there have been no new invoices generated during this period.",
+  "tables": [],
+  "summary_points": [
+    "No invoices were recorded in the last week.",
+    "This may indicate a slowdown in sales or billing activities."
+  ],
+  "charts": [],
+  "kpi_cards": []
+}
+2026-03-02 15:41:21 | INFO     | ------------------------------------------------------------
+2026-03-02 15:41:21 | INFO     | [REQ-154110-0003] RESPONSE PARSING
+2026-03-02 15:41:21 | INFO     | ------------------------------------------------------------
+2026-03-02 15:41:21 | INFO     | [REQ-154110-0003] Response Text: I couldn't find any invoices from the last week. It appears there have been no new invoices generated during this period.
+2026-03-02 15:41:21 | INFO     | [REQ-154110-0003] Charts Count: 0
+2026-03-02 15:41:21 | INFO     | [REQ-154110-0003] Tables Count: 0
+2026-03-02 15:41:21 | INFO     | [REQ-154110-0003] Summary Points: 2
+2026-03-02 15:41:21 | INFO     | ================================================================================
+2026-03-02 15:41:21 | INFO     | [REQ-154110-0003] QUERY COMPLETED SUCCESSFULLY
+2026-03-02 15:41:21 | INFO     | [REQ-154110-0003] Total Duration: 11197.26ms
+2026-03-02 15:41:21 | INFO     | ================================================================================
+2026-03-02 15:41:21 | INFO     | 
+2026-03-02 16:23:05 | INFO     | ================================================================================
+2026-03-02 16:23:05 | INFO     | [REQ-162305-0001] NEW QUERY RECEIVED
+2026-03-02 16:23:05 | INFO     | ================================================================================
+2026-03-02 16:23:05 | INFO     | [REQ-162305-0001] USER QUESTION: show me a list of invoices generated last week
+2026-03-02 16:23:05 | INFO     | [REQ-162305-0001] TIMESTAMP: 2026-03-02T16:23:05.118652
+2026-03-02 16:23:12 | INFO     | ------------------------------------------------------------
+2026-03-02 16:23:12 | INFO     | [REQ-162305-0001] QUERY REFINEMENT
+2026-03-02 16:23:12 | INFO     | ------------------------------------------------------------
+2026-03-02 16:23:12 | INFO     | [REQ-162305-0001] Original Query: show me a list of invoices generated last week
+2026-03-02 16:23:12 | INFO     | [REQ-162305-0001] Conversation History (1 messages):
+2026-03-02 16:23:12 | INFO     | [REQ-162305-0001]   1. show me the last one week top 5 invoices
+2026-03-02 16:23:12 | INFO     | [REQ-162305-0001] Refined Query: show me a list of invoices generated during the last week
+2026-03-02 16:23:12 | INFO     | [REQ-162305-0001] Query was modified by refinement
+2026-03-02 16:23:12 | INFO     | ------------------------------------------------------------
+2026-03-02 16:23:12 | INFO     | [REQ-162305-0001] VANNA SQL GENERATION
+2026-03-02 16:23:12 | INFO     | ------------------------------------------------------------
+2026-03-02 16:23:12 | INFO     | [REQ-162305-0001] Generating SQL for: show me a list of invoices generated during the last week
+2026-03-02 16:23:15 | INFO     | [REQ-162305-0001] SQL Generation: SUCCESS
+2026-03-02 16:23:15 | INFO     | [REQ-162305-0001] Generated SQL:
+2026-03-02 16:23:15 | INFO     | [REQ-162305-0001]   SELECT *
+2026-03-02 16:23:15 | INFO     | [REQ-162305-0001]   FROM accounts
+2026-03-02 16:23:15 | INFO     | [REQ-162305-0001]   WHERE invoice_date >= CURDATE() - INTERVAL 7 DAY;
+2026-03-02 16:23:15 | INFO     | ------------------------------------------------------------
+2026-03-02 16:23:15 | INFO     | [REQ-162305-0001] SQL VALIDATION
+2026-03-02 16:23:15 | INFO     | ------------------------------------------------------------
+2026-03-02 16:23:15 | INFO     | [REQ-162305-0001] Validation: PASSED
+2026-03-02 16:23:15 | INFO     | [REQ-162305-0001] Sanitized SQL:
+2026-03-02 16:23:15 | INFO     | [REQ-162305-0001]   SELECT *
+2026-03-02 16:23:15 | INFO     | [REQ-162305-0001]   FROM accounts
+2026-03-02 16:23:15 | INFO     | [REQ-162305-0001]   WHERE invoice_date >= CURDATE() - INTERVAL 7 DAY
+2026-03-02 16:23:15 | INFO     | ------------------------------------------------------------
+2026-03-02 16:23:15 | INFO     | [REQ-162305-0001] SQL EXECUTION
+2026-03-02 16:23:15 | INFO     | ------------------------------------------------------------
+2026-03-02 16:23:15 | INFO     | [REQ-162305-0001] Executing SQL against database...
+2026-03-02 16:23:17 | INFO     | [REQ-162305-0001] Execution: SUCCESS
+2026-03-02 16:23:17 | INFO     | [REQ-162305-0001] Rows Returned: 1000
+2026-03-02 16:23:17 | INFO     | [REQ-162305-0001] Columns: ['invoice_id', 'invoice_from_company', 'invoice_to_company', 'invoice_amount', 'paid_amount', 'balance_amount', 'currency', 'invoice_date', 'due_date', 'created_at', 'updated_at', 'status']
+2026-03-02 16:23:17 | DEBUG    | [REQ-162305-0001] Sample Data (first 3 rows):
+2026-03-02 16:23:17 | DEBUG    | [REQ-162305-0001]   Row 1: {'invoice_id': 1, 'invoice_from_company': 88, 'invoice_to_company': 48, 'invoice_amount': 191888.72, 'paid_amount': 63202.78, 'balance_amount': 128685.94, 'currency': 'USD', 'invoice_date': datetime.date(2026, 2, 23), 'due_date': datetime.date(2026, 9, 4), 'created_at': Timestamp('2026-02-23 00:00:0... [truncated, total 373 chars]
+2026-03-02 16:23:17 | DEBUG    | [REQ-162305-0001]   Row 2: {'invoice_id': 2, 'invoice_from_company': 68, 'invoice_to_company': 23, 'invoice_amount': 31577.99, 'paid_amount': 31577.99, 'balance_amount': 0.0, 'currency': 'EUR', 'invoice_date': datetime.date(2026, 2, 24), 'due_date': datetime.date(2026, 1, 13), 'created_at': Timestamp('2026-02-24 00:00:00'), '... [truncated, total 364 chars]
+2026-03-02 16:23:17 | DEBUG    | [REQ-162305-0001]   Row 3: {'invoice_id': 3, 'invoice_from_company': 68, 'invoice_to_company': 45, 'invoice_amount': 57850.65, 'paid_amount': 9197.84, 'balance_amount': 48652.81, 'currency': 'INR', 'invoice_date': datetime.date(2026, 2, 25), 'due_date': datetime.date(2026, 1, 11), 'created_at': Timestamp('2026-02-25 00:00:00'... [truncated, total 371 chars]
+2026-03-02 16:23:17 | INFO     | ------------------------------------------------------------
+2026-03-02 16:23:17 | INFO     | [REQ-162305-0001] RESULT FORMATTING
+2026-03-02 16:23:17 | INFO     | ------------------------------------------------------------
+2026-03-02 16:23:17 | INFO     | [REQ-162305-0001] Data Source: unknown
+2026-03-02 16:23:17 | INFO     | [REQ-162305-0001] Row Count: 2001
+2026-03-02 16:23:17 | INFO     | [REQ-162305-0001] Truncated: True
+2026-03-02 16:23:17 | INFO     | [REQ-162305-0001] Summary: Query returned 2001 rows (showing first 100) with 12 columns: invoice_id, invoice_from_company, invoice_to_company, invoice_amount, paid_amount and 7 more | invoice_id range: 1.00 - 100.00 | invoice_from_company range: 2.00 - 98.00 | invoice_to_company range: 4.00 - 100.00
+2026-03-02 16:23:17 | INFO     | [REQ-162305-0001] Chart Suggestion: line - Time series data
+2026-03-02 16:23:17 | INFO     | ------------------------------------------------------------
+2026-03-02 16:23:17 | INFO     | [REQ-162305-0001] LLM PROMPT BUILDING
+2026-03-02 16:23:17 | INFO     | ------------------------------------------------------------
+2026-03-02 16:23:17 | INFO     | [REQ-162305-0001] Prompt Type: semantic_analysis
+2026-03-02 16:23:17 | DEBUG    | [REQ-162305-0001] Full Prompt (17928 chars):
+2026-03-02 16:23:17 | DEBUG    | [REQ-162305-0001] Prompt Start:
+SYSTEM:
+You are an AI CFO assistant for financial analytics and invoicing. YOU MUST RESPOND WITH VALID JSON ONLY. NO MARKDOWN. NO PLAIN TEXT. ONLY JSON.
+
+**CRITICAL OUTPUT RULE - READ FIRST:**
+You MUST NEVER return raw JSON data, database output, or unformatted lists to the user.
+ALWAYS format your response as natural language with proper tables, summaries, and insights.
+
+**CRITICAL: The "response" field MUST be SHORT (2-4 sentences maximum) and conversational.**
+**DO NOT include lists of data, account numbers, or customer details in the "response" field.**
+**ALL detailed data MUST go in the "tables" array with proper headers and rows.**
+
+You are an expert in financial analytics ,reporting and invoicing. for AICFO - financial analytics, reporting, and invoicing.
+
+=== RESPONSE PRESENTATION RULES (MANDATORY) ===
+1. **Natural Language First**: The "response" field MUST contain SHORT conversational text (2-4 sentences MAXIMUM), NOT raw data
+2. **NO DATA IN RESPONSE FIELD**: Do NOT include 
+2026-03-02 16:23:17 | DEBUG    | [REQ-162305-0001] ... [middle truncated] ...
+2026-03-02 16:23:17 | DEBUG    | [REQ-162305-0001] Prompt End:
+    "invoice_to_company": 27,
+    "invoice_amount": 18218.83,
+    "paid_amount": 18218.83,
+    "balance_amount": 0.0,
+    "currency": "GBP",
+    "invoice_date": "2026-02-24",
+    "due_date": "2025-12-10",
+    "created_at": "2026-02-24T00:00:00",
+    "updated_at": "2026-03-02T10:42:15",
+    "status": "paid"
+  },
+  {
+    "invo
+... [truncated for brevity]
+
+Analyze the above query results and provide your response in the specified RESPONSE FORMAT based on the RESPONSE TYPE DETERMINATION rules above.
+2026-03-02 16:23:17 | INFO     | ------------------------------------------------------------
+2026-03-02 16:23:17 | INFO     | [REQ-162305-0001] LLM API REQUEST
+2026-03-02 16:23:17 | INFO     | ------------------------------------------------------------
+2026-03-02 16:23:17 | INFO     | [REQ-162305-0001] Model: gpt-4o-mini
+2026-03-02 16:23:17 | INFO     | [REQ-162305-0001] Temperature: 0.7
+2026-03-02 16:23:17 | INFO     | [REQ-162305-0001] Max Tokens: 2000
+2026-03-02 16:23:17 | INFO     | [REQ-162305-0001] Sending request to OpenAI...
+2026-03-02 16:23:35 | INFO     | ------------------------------------------------------------
+2026-03-02 16:23:35 | INFO     | [REQ-162305-0001] LLM RESPONSE RECEIVED
+2026-03-02 16:23:35 | INFO     | ------------------------------------------------------------
+2026-03-02 16:23:35 | INFO     | [REQ-162305-0001] Tokens Used: 6088
+2026-03-02 16:23:35 | INFO     | [REQ-162305-0001] Response Length: 1751 chars
+2026-03-02 16:23:35 | DEBUG    | [REQ-162305-0001] Raw Response:
+2026-03-02 16:23:35 | DEBUG    | [REQ-162305-0001] {
+  "response": "I found a total of 2001 invoices generated last week, with a diverse range of amounts and statuses. This includes both paid and overdue invoices, highlighting the importance of timely collections.",
+  "tables": [{
+    "title": "Invoices Generated Last Week",
+    "headers": ["Invoice ID", "From Company", "To Company", "Invoice Amount", "Paid Amount", "Balance Amount", "Currency", "Invoice Date", "Due Date", "Status"],
+    "rows": [
+      ["1", "88", "48", "191888.72", "63202.78", "128685.94", "USD", "2026-02-23", "2026-09-04", "overdue"],
+      ["2", "68", "23", "31577.99", "31577.99", "0.0", "EUR", "2026-02-24", "2026-01-13", "paid"],
+      ["3", "68", "45", "57850.65", "9197.84", "48652.81", "INR", "2026-02-25", "2026-01-11", "overdue"],
+      ["4", "39", "24", "6757.85", "6757.85", "0.0", "EUR", "2026-02-26", "2027-03-05", "paid"],
+      ["5", "93", "98", "33371.6", "33371.6", "0.0", "GBP", "2026-02-27", "2026-04-16", "paid"],
+      ["6", "64", "83", "62943.18", "62943.18", "0.0", "INR", "2026-02-28", "2026-04-28", "paid"],
+      ["7", "18", "62", "140125.68", "140125.68", "0.0", "GBP", "2026-03-01", "2026-01-17", "paid"],
+      ["8", "30", "40", "27997.52", "7866.83", "20130.69", "GBP", "2026-02-23", "2026-04-04", "overdue"],
+      ["9", "9", "7", "18255.93", "6750.51", "11505.42", "USD", "2026-02-24", "2025-08-14", "overdue"],
+      ["10", "14", "89", "5574.0", "5574.0", "0.0", "INR", "2026-02-25", "2026-04-22", "paid"]
+    ]
+  }],
+  "summary_points": [
+ ... [truncated, total 1751 chars]
+2026-03-02 16:23:35 | INFO     | ------------------------------------------------------------
+2026-03-02 16:23:35 | INFO     | [REQ-162305-0001] RESPONSE PARSING
+2026-03-02 16:23:35 | INFO     | ------------------------------------------------------------
+2026-03-02 16:23:35 | INFO     | [REQ-162305-0001] Response Text: I found a total of 2001 invoices generated last week, with a diverse range of amounts and statuses. This includes both paid and overdue invoices, highlighting the importance of timely collections.
+2026-03-02 16:23:35 | INFO     | [REQ-162305-0001] Charts Count: 0
+2026-03-02 16:23:35 | INFO     | [REQ-162305-0001] Tables Count: 1
+2026-03-02 16:23:35 | INFO     | [REQ-162305-0001] Summary Points: 3
+2026-03-02 16:23:35 | DEBUG    | [REQ-162305-0001] Table 1: title=Invoices Generated Last Week, rows=10
+2026-03-02 16:23:35 | INFO     | ================================================================================
+2026-03-02 16:23:35 | INFO     | [REQ-162305-0001] QUERY COMPLETED SUCCESSFULLY
+2026-03-02 16:23:35 | INFO     | [REQ-162305-0001] Total Duration: 30636.37ms
+2026-03-02 16:23:35 | INFO     | ================================================================================
+2026-03-02 16:23:35 | INFO     | 
+2026-03-02 16:25:35 | INFO     | ================================================================================
+2026-03-02 16:25:35 | INFO     | [REQ-162535-0002] NEW QUERY RECEIVED
+2026-03-02 16:25:35 | INFO     | ================================================================================
+2026-03-02 16:25:35 | INFO     | [REQ-162535-0002] USER QUESTION: show me top 5 invoices
+2026-03-02 16:25:35 | INFO     | [REQ-162535-0002] TIMESTAMP: 2026-03-02T16:25:35.258173
+2026-03-02 16:25:38 | INFO     | ------------------------------------------------------------
+2026-03-02 16:25:38 | INFO     | [REQ-162535-0002] QUERY REFINEMENT
+2026-03-02 16:25:38 | INFO     | ------------------------------------------------------------
+2026-03-02 16:25:38 | INFO     | [REQ-162535-0002] Original Query: show me top 5 invoices
+2026-03-02 16:25:38 | INFO     | [REQ-162535-0002] Conversation History (2 messages):
+2026-03-02 16:25:38 | INFO     | [REQ-162535-0002]   1. show me the last one week top 5 invoices
+2026-03-02 16:25:38 | INFO     | [REQ-162535-0002]   2. show me a list of invoices generated last week
+2026-03-02 16:25:38 | INFO     | [REQ-162535-0002] Refined Query: show me the top 5 invoices generated last week
+2026-03-02 16:25:38 | INFO     | [REQ-162535-0002] Query was modified by refinement
+2026-03-02 16:25:38 | INFO     | ------------------------------------------------------------
+2026-03-02 16:25:38 | INFO     | [REQ-162535-0002] VANNA SQL GENERATION
+2026-03-02 16:25:38 | INFO     | ------------------------------------------------------------
+2026-03-02 16:25:38 | INFO     | [REQ-162535-0002] Generating SQL for: show me the top 5 invoices generated last week
+2026-03-02 16:25:43 | INFO     | [REQ-162535-0002] SQL Generation: SUCCESS
+2026-03-02 16:25:43 | INFO     | [REQ-162535-0002] Generated SQL:
+2026-03-02 16:25:43 | INFO     | [REQ-162535-0002]   SELECT *
+2026-03-02 16:25:43 | INFO     | [REQ-162535-0002]   FROM accounts
+2026-03-02 16:25:43 | INFO     | [REQ-162535-0002]   WHERE invoice_date >= CURDATE() - INTERVAL (WEEKDAY(CURDATE()) + 7) DAY
+2026-03-02 16:25:43 | INFO     | [REQ-162535-0002]     AND invoice_date < CURDATE() - INTERVAL WEEKDAY(CURDATE()) DAY
+2026-03-02 16:25:43 | INFO     | [REQ-162535-0002]   ORDER BY invoice_date DESC
+2026-03-02 16:25:43 | INFO     | ------------------------------------------------------------
+2026-03-02 16:25:43 | INFO     | [REQ-162535-0002] SQL VALIDATION
+2026-03-02 16:25:43 | INFO     | ------------------------------------------------------------
+2026-03-02 16:25:43 | INFO     | [REQ-162535-0002] Validation: PASSED
+2026-03-02 16:25:43 | INFO     | [REQ-162535-0002] Sanitized SQL:
+2026-03-02 16:25:43 | INFO     | [REQ-162535-0002]   SELECT *
+2026-03-02 16:25:43 | INFO     | [REQ-162535-0002]   FROM accounts
+2026-03-02 16:25:43 | INFO     | [REQ-162535-0002]   WHERE invoice_date >= CURDATE() - INTERVAL (WEEKDAY(CURDATE()) + 7) DAY
+2026-03-02 16:25:43 | INFO     | [REQ-162535-0002]     AND invoice_date < CURDATE() - INTERVAL WEEKDAY(CURDATE()) DAY
+2026-03-02 16:25:43 | INFO     | [REQ-162535-0002]   ORDER BY invoice_date DESC
+2026-03-02 16:25:43 | INFO     | ------------------------------------------------------------
+2026-03-02 16:25:43 | INFO     | [REQ-162535-0002] SQL EXECUTION
+2026-03-02 16:25:43 | INFO     | ------------------------------------------------------------
+2026-03-02 16:25:43 | INFO     | [REQ-162535-0002] Executing SQL against database...
+2026-03-02 16:25:44 | INFO     | [REQ-162535-0002] Execution: SUCCESS
+2026-03-02 16:25:44 | INFO     | [REQ-162535-0002] Rows Returned: 1000
+2026-03-02 16:25:44 | INFO     | [REQ-162535-0002] Columns: ['invoice_id', 'invoice_from_company', 'invoice_to_company', 'invoice_amount', 'paid_amount', 'balance_amount', 'currency', 'invoice_date', 'due_date', 'created_at', 'updated_at', 'status']
+2026-03-02 16:25:44 | DEBUG    | [REQ-162535-0002] Sample Data (first 3 rows):
+2026-03-02 16:25:44 | DEBUG    | [REQ-162535-0002]   Row 1: {'invoice_id': 7, 'invoice_from_company': 18, 'invoice_to_company': 62, 'invoice_amount': 140125.68, 'paid_amount': 140125.68, 'balance_amount': 0.0, 'currency': 'GBP', 'invoice_date': datetime.date(2026, 3, 1), 'due_date': datetime.date(2026, 1, 17), 'created_at': Timestamp('2026-03-01 00:00:00'), ... [truncated, total 365 chars]
+2026-03-02 16:25:44 | DEBUG    | [REQ-162535-0002]   Row 2: {'invoice_id': 14, 'invoice_from_company': 58, 'invoice_to_company': 86, 'invoice_amount': 139154.61, 'paid_amount': 11569.83, 'balance_amount': 127584.78, 'currency': 'GBP', 'invoice_date': datetime.date(2026, 3, 1), 'due_date': datetime.date(2026, 3, 1), 'created_at': Timestamp('2026-03-01 00:00:0... [truncated, total 373 chars]
+2026-03-02 16:25:44 | DEBUG    | [REQ-162535-0002]   Row 3: {'invoice_id': 21, 'invoice_from_company': 35, 'invoice_to_company': 17, 'invoice_amount': 200647.56, 'paid_amount': 10034.44, 'balance_amount': 190613.12, 'currency': 'INR', 'invoice_date': datetime.date(2026, 3, 1), 'due_date': datetime.date(2026, 10, 22), 'created_at': Timestamp('2026-03-01 00:00... [truncated, total 375 chars]
+2026-03-02 16:25:44 | INFO     | ------------------------------------------------------------
+2026-03-02 16:25:44 | INFO     | [REQ-162535-0002] RESULT FORMATTING
+2026-03-02 16:25:44 | INFO     | ------------------------------------------------------------
+2026-03-02 16:25:44 | INFO     | [REQ-162535-0002] Data Source: unknown
+2026-03-02 16:25:44 | INFO     | [REQ-162535-0002] Row Count: 2001
+2026-03-02 16:25:44 | INFO     | [REQ-162535-0002] Truncated: True
+2026-03-02 16:25:44 | INFO     | [REQ-162535-0002] Summary: Query returned 2001 rows (showing first 100) with 12 columns: invoice_id, invoice_from_company, invoice_to_company, invoice_amount, paid_amount and 7 more | invoice_id range: 7.00 - 1123.00 | invoice_from_company range: 4.00 - 100.00 | invoice_to_company range: 1.00 - 100.00
+2026-03-02 16:25:44 | INFO     | [REQ-162535-0002] Chart Suggestion: line - Time series data
+2026-03-02 16:25:44 | INFO     | ------------------------------------------------------------
+2026-03-02 16:25:44 | INFO     | [REQ-162535-0002] LLM PROMPT BUILDING
+2026-03-02 16:25:44 | INFO     | ------------------------------------------------------------
+2026-03-02 16:25:44 | INFO     | [REQ-162535-0002] Prompt Type: semantic_analysis
+2026-03-02 16:25:44 | DEBUG    | [REQ-162535-0002] Full Prompt (18021 chars):
+2026-03-02 16:25:44 | DEBUG    | [REQ-162535-0002] Prompt Start:
+SYSTEM:
+You are an AI CFO assistant for financial analytics and invoicing. YOU MUST RESPOND WITH VALID JSON ONLY. NO MARKDOWN. NO PLAIN TEXT. ONLY JSON.
+
+**CRITICAL OUTPUT RULE - READ FIRST:**
+You MUST NEVER return raw JSON data, database output, or unformatted lists to the user.
+ALWAYS format your response as natural language with proper tables, summaries, and insights.
+
+**CRITICAL: The "response" field MUST be SHORT (2-4 sentences maximum) and conversational.**
+**DO NOT include lists of data, account numbers, or customer details in the "response" field.**
+**ALL detailed data MUST go in the "tables" array with proper headers and rows.**
+
+You are an expert in financial analytics ,reporting and invoicing. for AICFO - financial analytics, reporting, and invoicing.
+
+=== RESPONSE PRESENTATION RULES (MANDATORY) ===
+1. **Natural Language First**: The "response" field MUST contain SHORT conversational text (2-4 sentences MAXIMUM), NOT raw data
+2. **NO DATA IN RESPONSE FIELD**: Do NOT include 
+2026-03-02 16:25:44 | DEBUG    | [REQ-162535-0002] ... [middle truncated] ...
+2026-03-02 16:25:44 | DEBUG    | [REQ-162535-0002] Prompt End:
+
+  },
+  {
+    "invoice_id": 112,
+    "invoice_from_company": 67,
+    "invoice_to_company": 1,
+    "invoice_amount": 18985.06,
+    "paid_amount": 8224.64,
+    "balance_amount": 10760.42,
+    "currency": "INR",
+    "invoice_date": "2026-03-01",
+    "due_date": "2026-04-02",
+    "created_at": "2026-03-01T00:00:00",
+    "updated
+... [truncated for brevity]
+
+Analyze the above query results and provide your response in the specified RESPONSE FORMAT based on the RESPONSE TYPE DETERMINATION rules above.
+2026-03-02 16:25:44 | INFO     | ------------------------------------------------------------
+2026-03-02 16:25:44 | INFO     | [REQ-162535-0002] LLM API REQUEST
+2026-03-02 16:25:44 | INFO     | ------------------------------------------------------------
+2026-03-02 16:25:44 | INFO     | [REQ-162535-0002] Model: gpt-4o-mini
+2026-03-02 16:25:44 | INFO     | [REQ-162535-0002] Temperature: 0.7
+2026-03-02 16:25:44 | INFO     | [REQ-162535-0002] Max Tokens: 2000
+2026-03-02 16:25:44 | INFO     | [REQ-162535-0002] Sending request to OpenAI...
+2026-03-02 16:26:00 | INFO     | ------------------------------------------------------------
+2026-03-02 16:26:00 | INFO     | [REQ-162535-0002] LLM RESPONSE RECEIVED
+2026-03-02 16:26:00 | INFO     | ------------------------------------------------------------
+2026-03-02 16:26:00 | INFO     | [REQ-162535-0002] Tokens Used: 5884
+2026-03-02 16:26:00 | INFO     | [REQ-162535-0002] Response Length: 1320 chars
+2026-03-02 16:26:00 | DEBUG    | [REQ-162535-0002] Raw Response:
+2026-03-02 16:26:00 | DEBUG    | [REQ-162535-0002] {
+  "response": "I found the top 5 invoices based on their amounts, showcasing a mix of paid and overdue statuses. The largest invoice is for â‚¹243,308.17 from a recent transaction, indicating significant amounts are still outstanding across various companies.",
+  "tables": [{
+    "title": "Top 5 Invoices",
+    "headers": ["Invoice ID", "From Company", "To Company", "Invoice Amount", "Paid Amount", "Balance Amount", "Currency", "Invoice Date", "Due Date", "Status"],
+    "rows": [
+      ["105", "66", "99", "243308.17", "133557.98", "109750.19", "USD", "2026-03-01", "2026-01-21", "overdue"],
+      ["21", "35", "17", "200647.56", "10034.44", "190613.12", "INR", "2026-03-01", "2026-10-22", "overdue"],
+      ["42", "83", "47", "208929.89", "72085.7", "136844.19", "EUR", "2026-03-01", "2026-04-19", "overdue"],
+      ["77", "65", "36", "208642.93", "1342.92", "207300.01", "INR", "2026-03-01", "2026-03-18", "overdue"],
+      ["14", "58", "86", "139154.61", "11569.83", "127584.78", "GBP", "2026-03-01", "2026-03-01", "overdue"]
+    ]
+  }],
+  "summary_points": [
+    "Top invoice amount is â‚¹243,308.17 with an overdue status.",
+    "The invoices show a mix of currencies including USD, INR, and EUR.",
+    "Significant balances remain unpaid, which may affect cash flow."
+  ],
+  "charts": [],
+  "kpi_cards": []
+}
+2026-03-02 16:26:00 | INFO     | ------------------------------------------------------------
+2026-03-02 16:26:00 | INFO     | [REQ-162535-0002] RESPONSE PARSING
+2026-03-02 16:26:00 | INFO     | ------------------------------------------------------------
+2026-03-02 16:26:00 | INFO     | [REQ-162535-0002] Response Text: I found the top 5 invoices based on their amounts, showcasing a mix of paid and overdue statuses. The largest invoice is for â‚¹243,308.17 from a recent transaction, indicating significant amounts are still outstanding across various companies.
+2026-03-02 16:26:00 | INFO     | [REQ-162535-0002] Charts Count: 0
+2026-03-02 16:26:00 | INFO     | [REQ-162535-0002] Tables Count: 1
+2026-03-02 16:26:00 | INFO     | [REQ-162535-0002] Summary Points: 3
+2026-03-02 16:26:00 | DEBUG    | [REQ-162535-0002] Table 1: title=Top 5 Invoices, rows=5
+2026-03-02 16:26:00 | INFO     | ================================================================================
+2026-03-02 16:26:00 | INFO     | [REQ-162535-0002] QUERY COMPLETED SUCCESSFULLY
+2026-03-02 16:26:00 | INFO     | [REQ-162535-0002] Total Duration: 25478.29ms
+2026-03-02 16:26:00 | INFO     | ================================================================================
+2026-03-02 16:26:00 | INFO     | 
